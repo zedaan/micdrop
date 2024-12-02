@@ -7,7 +7,7 @@
   import Pin from "@assets/svg/pin.svg";
   import Badge from "@components/Badges/Badge.svelte";
   import CalendarContainer from "@components/Calendar/CalendarContainer/CalendarContainer.svelte";
-  import FileDropzone from "@components/FileDropzone/FileDropZone.svelte";
+  import FileDropzone from "@components/FileDropzone/FileDropzone.svelte";
   import Cropzone from "@components/CroppingUI/CropZone.svelte";
 
   let modalOpen = false;
