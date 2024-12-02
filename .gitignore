@@ -7,6 +7,8 @@ node_modules
 /build
 .svelte.kit
 .svelte.kit/
+yarn.lock/
+yarn.lock
 
 
 # OS
