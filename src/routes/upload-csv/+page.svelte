@@ -23,10 +23,9 @@
   </div>
   <p class="w-3/4 text-sm text-gray-500 my-4">
     Its important for your deliverability that everyone you send to has given
-    you explicit permission to email them. Pleased <a
-      href="#"
-      class="text-blue-500 font-medium">read our policy</a
-    > for more details
+    <!-- svelte-ignore a11y-invalid-attribute -->
+    you explicit permission to email them. Pleased
+    <a href="#" class="text-blue-500 font-medium">read our policy</a> for more details
   </p>
 
   <div class="flex justify-between my-5">
