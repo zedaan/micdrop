@@ -8,7 +8,7 @@
   import CurrencyDollar from "carbon-icons-svelte/lib/CurrencyDollar.svelte";
   import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
   import TicketOutline from "@assets/icons/ticket-outline.svg";
-  import Message from "@assets/icons/Message.svg";
+  import Message from "@assets/icons/message.svg";
   import SendMessageIcon from "@assets/icons/message.svg";
   import TransferIcon from "@assets/icons/transfer.svg";
   import LeftCard from "@components/Cards/LeftCard.svelte";
