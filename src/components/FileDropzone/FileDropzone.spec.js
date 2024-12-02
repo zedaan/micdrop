@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
-import FileDropZone from "./FileDropZone.svelte";
+import FileDropZone from "./FileDropzone.svelte";
 
 function setupTest(args) {
   const user = userEvent.setup();
