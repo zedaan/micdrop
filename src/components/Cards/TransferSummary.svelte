@@ -2,6 +2,7 @@
     import { Card } from "flowbite-svelte";
     import Toggle from "@components/ToggleSwitch/Toggle.svelte";
     import Button from "@components/Button/Button.svelte";
+    import Badge from "@components/Badges/Badge.svelte";
 
     export let transferSummary = {
         originalTickets: [],
@@ -13,11 +14,11 @@
         refund: 0,
     };
     function handleAlert() {
-    alert("Hii, This is Function Alert");
-  }
+        alert("Hii, This is Function Alert");
+    }
 </script>
 
-<div class="p-6 max-w-md mx-auto">
+<div class="p-6 max-w-md">
     <Card size="auto">
         <h2 class="text-xl font-normal text-gray-900 mb-4">Transfer Summary</h2>
         <p class="text-base text-gray-500 mb-4 font-normal">
@@ -34,7 +35,7 @@
             </h3>
             <ul class="mt-2">
                 {#each transferSummary.originalTickets as ticket}
-                    <li class="flex justify-between text-sm py-1">
+                    <li class="flex justify-between py-1">
                         <div class="flex flex-col">
                             <span class="text-lg text-gray-900 font-semibold"
                                 >{ticket.quantity} x {ticket.type}</span
@@ -43,7 +44,7 @@
                                 >${ticket.price.toFixed(2)} each</span
                             >
                         </div>
-                        <span class="text-gray-500 font-semibold text-base"
+                        <span class="text-gray-500 font-normal text-base"
                             >-${(ticket.quantity * ticket.price).toFixed(
                                 2,
                             )}</span
@@ -67,11 +68,11 @@
                             <span class="text-lg text-gray-900 font-semibold"
                                 >{ticket.quantity} x {ticket.type}</span
                             >
-                            <span class="text-gray-500 text-xs"
+                            <span class="text-gray-500 text-sm font-medium"
                                 >${ticket.price.toFixed(2)} each</span
                             >
                         </div>
-                        <span class="text-gray-500 font-semibold text-base"
+                        <span class="ext-gray-500 font-normal text-base"
                             >${(ticket.quantity * ticket.price).toFixed(
                                 2,
                             )}</span
@@ -124,24 +125,21 @@
             </ul>
         </div>
         <!-- Transfer Button -->
-        <div class="mt-4">
-            <Button on:click={handleAlert} size ="full">
-                Transfer tickets
-              </Button>
+        <div class="mt-4 pb-5">
+            <Button on:click={handleAlert} size="full">Transfer tickets</Button>
         </div>
 
         <!-- Refund Info -->
-        <div
-            class="p-4 bg-green-50 rounded-md text-sm text-green-800 border border-green-200 mt-4"
-        >
-            The customer will be issued a refund of <strong
-                >${transferSummary.refund.toFixed(2)}</strong
-            >
+        <div class="">
+            <Badge size="large" status="success"class="w-full"
+                >The customer will be issued a refund of
+                <strong>${transferSummary.refund.toFixed(2)}</strong>
+            </Badge>
         </div>
 
         <!-- Waive the Difference Toggle -->
         <div class="flex items-center mt-4">
-            <Toggle/>
+            <Toggle />
             <label for="waive-difference" class="ml-2 text-sm text-gray-700">
                 Waive the difference
             </label>

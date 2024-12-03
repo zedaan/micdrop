@@ -30,9 +30,9 @@
   };
 </script>
 
-<div class="w-full">
+<div class="w-full pt-5">
     <span class="font-bold text-3xl text-gray-900 p-5">Transfer order</span>
-    <div class="mt-3 w-full flex">
+    <div class="mt-3 w-full block md:flex">
         <TransferCard {transferData}  />
         <TransferSummary transferSummary={transferSummaryData} />
     </div>

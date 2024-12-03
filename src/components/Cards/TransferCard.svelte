@@ -15,9 +15,9 @@
     ];
 </script>
 
-<div class="w-full p-4">
-    <Card class="bg-gray-50 border border-gray-300 rounded-lg w-full" size="auto"  >
-        <div class="flex justify-between flex-wrap p-4">
+<div class="w-full p-4 ">
+    <Card class="bg-gray-50 border border-gray-300 rounded-lg w-full" size="auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
             {#each transfers as transfer}
                 <div class="w-1/2">
                     <p class="text-sm font-normal text-Text-Tartiary">{transfer.label}:</p>
