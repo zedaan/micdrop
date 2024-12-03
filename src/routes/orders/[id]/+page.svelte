@@ -20,6 +20,7 @@
   import RefundModal from "@components/Orders/RefundModal.svelte";
   import TableSkeleton from "@components/Table/TableSkeleton.svelte";
   import Table from "@components/Table/Table.svelte";
+  import { goto } from "$app/navigation";
   import { AttendeeTableColumns } from "./../../../pages/orders/OrderTableColumn";
 
   $: orderId = $page.params.id;
@@ -116,7 +117,6 @@
 
   const handleRefund = () => {
     console.log("Refund processed!");
-    // showRefundModal = false;
   };
 
   const handleCancel = () => {
@@ -158,16 +158,14 @@
         >
         <Dropdown class="w-[215px] space-y-3">
           <DropdownItem
-            class="flex items-center gap-3 no-underline hover:no-underline"
-            ><img src={PrintIcon} alt="Print Tickets" />Print Tickets</DropdownItem
-          >
-          <DropdownItem
             class="flex items-center gap-2 no-underline hover:no-underline"
           >
             <img src={SendMessageIcon} alt="Resend Confirmation" />Resend
             confirmation</DropdownItem
           >
           <DropdownItem
+            on:click={async () =>
+              await goto(`/orders/${orderId}/transferOrder`)}
             class="flex items-center gap-2 no-underline hover:no-underline"
           >
             <img src={TransferIcon} alt="transfer" />Transfer order</DropdownItem

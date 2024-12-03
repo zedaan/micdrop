@@ -172,7 +172,7 @@
         {#if column.isComponent && column.customRender(row[column.key])}
           {@const renderData = column.customRender(row)}
           <svelte:component
-            this={renderData.component}
+            this={renderData && renderData.component}
             {...(({ children, ...props }) => props)(renderData.props)}
           >
             {renderData.props.children}
@@ -182,11 +182,6 @@
         {:else}
           {row[column.key]}
         {/if}
-        <!-- {#if column.customRender}
-          {@html column.customRender(row[column.key])}
-        {:else}
-          {row[column.key]}
-        {/if} -->
       </td>
     {/if}
   {/each}

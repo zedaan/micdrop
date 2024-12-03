@@ -47,3 +47,8 @@ export interface TableProps {
     td?: string
   }
 }
+
+export interface RenderData {
+  component: typeof SvelteComponent; 
+  props: Record<string, any>; 
+}
