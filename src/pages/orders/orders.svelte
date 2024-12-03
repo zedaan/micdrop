@@ -179,10 +179,12 @@
                 confirmation</DropdownItem
               >
               <DropdownItem
+                on:click={async () => await goto(`/TransferOrder`)}
                 class="flex items-center gap-2 no-underline hover:no-underline"
               >
-                <img src={TransferIcon} alt="transfer" />Transfer order</DropdownItem
-              >
+                <img src={TransferIcon} alt="transfer" />
+                Transfer order
+              </DropdownItem>
             </Dropdown>
             <Button beforeIcon={CartIcon}>Create new order</Button>
           </div>
