@@ -9,6 +9,30 @@
   import CalendarContainer from "@components/Calendar/CalendarContainer/CalendarContainer.svelte";
   import FileDropzone from "@components/FileDropzone/FileDropzone.svelte";
   import Cropzone from "@components/CroppingUI/CropZone.svelte";
+  import TicketSelector from "../components/Accordion/Accordion.svelte";
+
+  const tickets = [
+    {
+      type: "General admission",
+      newPrice: 12.99,
+      difference: -2.0,
+      complimentary: false,
+    },
+    {
+      type: "VIP",
+      newPrice: 24.99,
+      difference: 10.0,
+      complimentary: false,
+    },
+    {
+      type: "Mezzanine",
+      newPrice: 34.99,
+      difference: 20.0,
+      complimentary: false,
+    },
+  ];
+
+  let selectedTicket = "General admission";
 
   let modalOpen = false;
 
@@ -26,7 +50,7 @@
   }
 </script>
 
-<svelte:head>
+<svelte:head>ndsbcnsadb,adbsnvcbdsanvbdvkjdsabvkjsadbvvvvv,nbdsvdsavsajdvbnsv 
   <title>Home</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
@@ -117,5 +141,6 @@
       size="large">warning</Badge
     >
     <p>To check more about Button variations, Please check the Storybook</p>
+    <TicketSelector {tickets} bind:selectedTicket />
   </div>
 </section>
