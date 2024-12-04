@@ -8,7 +8,7 @@
       <img src={stat.icon} alt="" />
     </div>
     <div>
-      <p class="text-[16px] font-normal text-Text-Tartiary">{stat.name}</p>
+      <p class="text-base font-normal text-Text-Tartiary">{stat.name}</p>
       <p class="text-2xl font-normal text-Text-Secondary">{stat.value}</p>
     </div>
   </div>

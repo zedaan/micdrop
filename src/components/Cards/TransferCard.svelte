@@ -6,7 +6,7 @@
 
 <div class="w-full">
   <Card
-    class="bg-gray-50 border border-gray-300 rounded-lg w-full "
+    class="bg-white-100 border border-gray-300 rounded-lg w-full "
     size="auto"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">

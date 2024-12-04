@@ -12,7 +12,7 @@
 
 <div class="w-full">
   <Card size="auto">
-    <h2 class="text-xl font-normal text-gray-900 mb-4">Transfer Summary</h2>
+    <h2 class="text-xl font-normal text-gray-900 mb-1">Transfer Summary</h2>
     <p class="text-base text-gray-500 mb-4 font-normal">
       The customer will be charged or refunded the difference between the
       amounts of the original and new order.

@@ -26,19 +26,19 @@
     <div class="space-y-4 text-gray-700">
       <div>
         <span class="text-sm font-normal text-gray-500">Customer name</span>
-        <p class="text-sm md:text-base font-medium text-gray-900 ext-gray-800">
+        <p class="text-sm md:text-base font-medium text-gray-900">
           {customerName}
         </p>
       </div>
       <div>
         <span class="text-sm font-normaltext-gray-500">Email address</span>
-        <p class="text-sm md:text-base font-medium text-gray-900 sm:text-lg">
+        <p class="text-sm md:text-base font-medium text-gray-900">
           {email}
         </p>
       </div>
       <div>
         <span class="text-sm font-normaltext-gray-500">Phone</span>
-        <p class="text-sm md:text-base font-medium text-gray-900 sm:text-lg">
+        <p class="text-sm md:text-base font-medium text-gray-900">
           {phone}
         </p>
       </div>
@@ -47,14 +47,14 @@
       <div class="flex justify-between items-center">
         <div>
           <span class="text-sm font-normaltext-gray-500">Order Total</span>
-          <p class="text-sm md:text-base font-medium text-gray-900 sm:text-lg">
+          <p class="text-sm md:text-base font-medium text-gray-900">
             {orderTotal}
           </p>
         </div>
       </div>
       <div>
         <span class="text-sm font-normaltext-gray-500">Number of tickets</span>
-        <p class="text-sm md:text-base font-medium text-gray-900 sm:text-lg">
+        <p class="text-sm md:text-base font-medium text-gray-900">
           {tickets}
         </p>
       </div>
@@ -81,12 +81,12 @@
     </div>
   </div>
 
-  <div class="border-t mt-4 sm:mt-6 pt-1 md:pt-4">
+  <div class="border-t mt-4 sm:mt-5">
     {#if !isNoteEdit && !submitNote}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
-        class="flex items-center cursor-pointer mt-5 md:mt-8"
+        class="flex items-center cursor-pointer p-3.5 mt-3 md:mt-6 md:pb-2"
         on:click={() => (isNoteEdit = true)}
       >
         <img class="h-5 w-5" src={NoteEdit} alt="note-edit" />
