@@ -87,7 +87,7 @@ export const AttendeeTableColumns = [
     title: "ATTENDEE NAME",
     sortable: true,
     customRender: (value) => {
-      return `<div class="text-gray-700 text-sm font-medium">${value}</div>`;
+      return `<div class="text-gray-500 text-sm font-normal">${value}</div>`;
     },
   },
   {
@@ -95,7 +95,7 @@ export const AttendeeTableColumns = [
     title: "TICKET TYPE",
     sortable: true,
     customRender: (value) => {
-      return `<div class="text-gray-600 text-sm">${value}</div>`;
+      return `<div class=text-gray-500 text-sm font-normal">${value}</div>`;
     },
   },
   {
@@ -103,7 +103,7 @@ export const AttendeeTableColumns = [
     title: "PRICE",
     sortable: true,
     customRender: (value) => {
-      return `<div class="text-gray-700 text-sm font-medium">$${value}</div>`;
+      return `<div class= "text-gray-500 text-sm font-normal">$${value}</div>`;
     },
   },
   {
@@ -122,7 +122,7 @@ export const AttendeeTableColumns = [
               : value === "Cancelled"
                 ? "danger"
                 : "success",
-            className: "rounded-full px-2",
+            className: "rounded-full px-2 text-gray-500 text-sm font-semibold",
             children: value.status
           }
         }

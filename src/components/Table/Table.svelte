@@ -17,6 +17,7 @@
 
   export let isRounded: TableProps["isRounded"] = false;
   export let isDraggable: TableProps["isDraggable"] = false;
+  export let isResizable: TableProps["isResizable"] = false;
   export let bordered: TableProps["bordered"] = false;
   export let classes: TableProps["classes"] = "";
   export let searchable: TableProps["searchable"] = false;
@@ -151,6 +152,7 @@
         {bordered}
         columns={filteredColumns}
         {selectAll}
+        {isResizable}
         {sortData}
         {toggleSelectAll}
         {hasActions}

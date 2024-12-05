@@ -45,6 +45,6 @@
     class="flex justify-between items-center text-gray-900 text-lg font-semibold"
   >
     <span class="font-normal text-sm text-Text-Tartiary">Total</span>
-    <span class="font-semibold text-base text-Text-Tartiary">{total}</span>
+    <span class="font-semibold text-2xl text-black">{total}</span>
   </div>
 </div>

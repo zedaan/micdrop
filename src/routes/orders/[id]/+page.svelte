@@ -4,7 +4,6 @@
   import { Dropdown, DropdownItem, Skeleton } from "flowbite-svelte";
   import DownArrowIcon from "@assets/icons/arrow-up-01.svg";
   import Cancel from "@assets/svg/cancel.svg";
-  import PrintIcon from "@assets/icons/print.svg";
   import CurrencyDollar from "carbon-icons-svelte/lib/CurrencyDollar.svelte";
   import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
   import TicketOutline from "@assets/icons/ticket-outline.svg";
@@ -101,7 +100,7 @@
       ticketType: "VIP Ticket",
       price: "24.99",
       isChecked: false,
-      status: "Checked in",
+      status: "Check in",
     },
     {
       id: 4,
@@ -109,7 +108,7 @@
       ticketType: "VIP Ticket",
       price: "24.99",
       isChecked: false,
-      status: "Checked in",
+      status: "Check in",
     },
   ];
 
@@ -181,127 +180,140 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-12 gap-8">
+  <div class="grid grid-cols-12 gap-3 pl-4">
     <div class="col-span-12 md:col-span-8 mr-7 md:mr-0">
-      <LeftCard
-        customerName={order?.purchasedBy?.name}
-        email={order?.purchasedBy?.email}
-        phone="910 482 3053"
-        orderTotal="$86.34"
-        tickets={4}
-        purchaseDate="Tuesday, July 30, 2024"
-        purchaseTime="1:41pm EST"
-        paymentMethod="•••• •••• •••• 1865"
-      />
-    </div>
-    <div class="col-span-12 md:col-span-4 mr-4 sm:ml-4">
-      <RightCard orderItems={items} {subtotal} {tax} {serviceFee} {total} />
-    </div>
-  </div>
-
-  <div
-    class="Attendees bg-white shadow-sm rounded-lg p-4 sm:p-6 border border-gray-200 mx-4 my-4"
-  >
-    <div>
-      <h2 class="py-5 text-3xl text-gray-900">Attendees</h2>
-      <div class="grid grid-cols-12 gap-8">
-        <div class="col-span-12 md:col-span-6">
-          <Search class="h-10" />
-        </div>
-        <div class="col-span-12 md:col-span-6">
-          <div class="flex items-center justify-end">
-            <div class="space-x-4">
-              <Button
-                strokebtn
-                afterIcon={DownArrowIcon}
-                className="!p-1.5 !px-3 gap-6">Actions</Button
-              >
-              <Dropdown class="w-[215px] ">
-                <DropdownItem
-                  on:click={() => onSelectDropDown("print_tickets")}
-                  class="flex items-center gap-3 no-underline hover:no-underline font-normal "
-                  ><img src={Message} alt="Print Tickets" />Message attendee</DropdownItem
-                >
-                <DropdownItem
-                  on:click={() => onSelectDropDown("switch_ticket_type")}
-                  class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                >
-                  <img
-                    src={TicketOutline}
-                    alt="Resend Confirmation"
-                    class="font-normal"
-                  />Switch ticket type</DropdownItem
-                >
-                <DropdownItem
-                  on:click={() => onSelectDropDown("transfer")}
-                  class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                >
-                  <img
-                    src={TransferIcon}
-                    alt="transfer"
-                  />Transfer</DropdownItem
-                >
-                <DropdownItem
-                  on:click={() => onSelectDropDown("issue_refund")}
-                  class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                >
-                  <CurrencyDollar />Issue refund</DropdownItem
-                >
-                <DropdownItem
-                  on:click={() => onSelectDropDown("delete_attendee")}
-                  class="flex items-center gap-2 no-underline hover:no-underline text-red-600 font-normal"
-                >
-                  <TrashCan />Delete attendee</DropdownItem
-                >
-              </Dropdown>
-              <Button deemphasized={true}>Check in</Button>
+      <div class="h-auto">
+        <LeftCard
+          customerName={order?.purchasedBy?.name}
+          email={order?.purchasedBy?.email}
+          phone="910 482 3053"
+          orderTotal="$86.34"
+          tickets={4}
+          purchaseDate="Tuesday, July 30, 2024"
+          purchaseTime="1:41pm EST"
+          paymentMethod="•••• •••• •••• 1865"
+        />
+      </div>
+      <div
+        class="bg-white shadow-sm rounded-lg p-4 align-center sm:p-6 border border-gray-200 my-4"
+      >
+        <div>
+          <h2 class="py-5 text-xl font-normal text-gray-900">Attendees</h2>
+          <div class="grid grid-cols-12 gap-8">
+            <div class="col-span-12 md:col-span-6">
+              <Search class="h-10" />
+            </div>
+            <div class="col-span-12 md:col-span-6">
+              <div class="flex items-center justify-end">
+                <div class="space-x-4">
+                  <Button
+                    strokebtn
+                    afterIcon={DownArrowIcon}
+                    className="!p-1.5 !px-3 gap-6">Actions</Button
+                  >
+                  <Dropdown class="w-[215px] ">
+                    <DropdownItem
+                      on:click={() => onSelectDropDown("print_tickets")}
+                      class="flex items-center gap-2 text-sm no-underline hover:no-underline font-normal text-gray-700"
+                      ><img src={Message} alt="Print Tickets" />Message attendee</DropdownItem
+                    >
+                    <DropdownItem
+                      on:click={() => onSelectDropDown("switch_ticket_type")}
+                      class="flex items-center gap-2 no-underline hover:no-underline font-normal"
+                    >
+                      <img
+                        src={TicketOutline}
+                        alt="Resend Confirmation"
+                        class="font-normal text-sm text-gray-700"
+                      />Switch ticket type</DropdownItem
+                    >
+                    <DropdownItem
+                      on:click={() => {
+                        goto(`/orders/${orderId}/transferOrder`);
+                        onSelectDropDown("transfer");
+                      }}
+                      class="flex items-center gap-2 no-underline hover:no-underline font-normal"
+                    >
+                      <img
+                        src={TransferIcon}
+                        alt="transfer"
+                        class="font-normal text-sm text-gray-700"
+                      />Transfer</DropdownItem
+                    >
+                    <DropdownItem
+                      on:click={() => onSelectDropDown("issue_refund")}
+                      class="flex items-center gap-2 no-underline hover:no-underline font-normal"
+                    >
+                      <CurrencyDollar
+                        class="font-normal text-sm text-gray-700"
+                      />Issue refund</DropdownItem
+                    >
+                    <DropdownItem
+                      on:click={() => onSelectDropDown("delete_attendee")}
+                      class="flex items-center gap-2 no-underline hover:no-underline text-red-600 font-normal"
+                    >
+                      <TrashCan
+                        class="font-normal text-sm text-gray-700"
+                      />Delete attendee</DropdownItem
+                    >
+                  </Dropdown>
+                  <Button deemphasized={true}>Check in</Button>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div class="hidden md:block">
+            {#if loading}
+              <TableSkeleton columns={8} rows={4} />
+            {:else}
+              <div
+                class="bg-BG-Secondary w-full rounded-[16px] mt-5 flex items-center justify-center"
+              >
+                <Table
+                  columns={AttendeeTableColumns}
+                  showTableHead={true}
+                  on:rowsSelect={rowsSelect}
+                  data={tableData}
+                  {onSelectDropDown}
+                  bordered={false}
+                  isRounded={false}
+                  searchable={false}
+                  isDraggable={false}
+                  styles={{
+                    container:
+                      "w-full align-left overflow-hidden overflow-auto",
+                    thead:
+                      "text-xs leading-[18px] text-gray-500 border-b font-semibold border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
+                    tr: " text-sm text-gray-500 font-normal leading-[21px]",
+                    td: "text-sm font-normal py-4 border-b border-gray-200",
+                  }}
+                  hasCheckBox={true}
+                  keyField="id"
+                  hasActions={true}
+                />
+              </div>
+            {/if}
+          </div>
+
+          <div class="block md:hidden">
+            {#each tableData as attend, index}
+              <TicketCard
+                attendeeName={attend.attendeeName}
+                ticketType={attend.ticketType}
+                price={attend.price}
+                status={attend.status}
+                isCheckedIn={attend.isChecked}
+                {onSelectDropDown}
+              />
+            {/each}
+          </div>
         </div>
       </div>
-
-      <div class="hidden md:block">
-        {#if loading}
-          <TableSkeleton columns={8} rows={4} />
-        {:else}
-          <div
-            class="bg-BG-Secondary w-full rounded-[16px] mt-5 flex items-center justify-center"
-          >
-            <Table
-              columns={AttendeeTableColumns}
-              showTableHead={true}
-              on:rowsSelect={rowsSelect}
-              data={tableData}
-              {onSelectDropDown}
-              bordered={false}
-              isRounded={false}
-              searchable={false}
-              styles={{
-                container: "w-full align-left overflow-hidden overflow-auto",
-                thead:
-                  "text-[12px] leading-[18px] text-gray-500 border-b font-semibold border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
-                tr: "text-[14px] text-gray-500 font-medium leading-[21px]",
-                td: "py-4 border-b border-gray-200",
-              }}
-              hasCheckBox={true}
-              keyField="id"
-              hasActions={true}
-            />
-          </div>
-        {/if}
-      </div>
-
-      <div class="block md:hidden">
-        {#each tableData as attend, index}
-          <TicketCard
-            attendeeName={attend.attendeeName}
-            ticketType={attend.ticketType}
-            price={attend.price}
-            status={attend.status}
-            isCheckedIn={attend.isChecked}
-            {onSelectDropDown}
-          />
-        {/each}
+    </div>
+    <div class="col-span-12 md:col-span-4 mr-4 sm:ml-4">
+      <div class="h-auto">
+        <RightCard orderItems={items} {subtotal} {tax} {serviceFee} {total} />
       </div>
     </div>
   </div>

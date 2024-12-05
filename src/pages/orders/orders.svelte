@@ -110,7 +110,7 @@
     <section class="bg-white custom-shadow rounded-[16px] p-6">
       <div class="flex items-center justify-between sm:flex-row flex-col">
         <div class="w-full">
-          <h5 class="text-[20px]">Orders</h5>
+          <h5 class=" text-gray-900 text-xl font-normal">Orders</h5>
         </div>
         <div class="w-full flex justify-end gap-2 sm:mt-0 mt-2">
           <div class="relative w-full sm:w-1/2 md:w-3/5">
@@ -119,13 +119,13 @@
 
           <div class="sm:block hidden">
             <Button
-              className="sm:mb-2 lg:mb-0"
+              className="sm:mb-2 lg:mb-0 font-medium text-sm text-gray-900"
               strokebtn
               beforeIcon={FilterIcon}>Filters</Button
             >
             <Dropdown class="w-[215px] space-y-3">
               <DropdownItem
-                class="flex items-center gap-3 no-underline hover:no-underline"
+                class="flex items-center gap-2 no-underline hover:no-underline"
                 >Today</DropdownItem
               >
               <DropdownItem
@@ -139,7 +139,11 @@
                 Last 30 days</DropdownItem
               >
             </Dropdown>
-            <Button strokebtn beforeIcon={ExportIcon}>Export</Button>
+            <Button
+              strokebtn
+              beforeIcon={ExportIcon}
+              className="font-medium text-sm text-gray-900">Export</Button
+            >
           </div>
         </div>
       </div>
@@ -169,7 +173,7 @@
             >
             <Dropdown {activeUrl} class="w-[215px] space-y-3">
               <DropdownItem
-                class="flex items-center gap-3 no-underline hover:no-underline"
+                class="flex items-center gap-2 no-underline hover:no-underline"
                 ><img src={PrintIcon} alt="Print Tickets" />Print Tickets</DropdownItem
               >
               <DropdownItem
@@ -204,6 +208,7 @@
                 bordered={false}
                 isRounded={false}
                 searchable={false}
+                isDraggable={false}
                 {onClickRow}
                 styles={{
                   container:

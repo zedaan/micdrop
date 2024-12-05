@@ -7,7 +7,7 @@ export const EventTableColumns = [
     customRender: (value) => {
       return `<div class="flex items-center gap-2">
         <img src="${value.image}" alt="${value.name}" class="w-12 h-12 rounded-md" />
-        <span class="text-gray-700 font-medium">${value.name}</span>
+        <span class="text-Text-Secondary font-normal text-sm">${value.name}</span>
       </div>`;
     },
   },
@@ -17,7 +17,7 @@ export const EventTableColumns = [
     sortable: true,
     customRender: (value) => {
       return `<div>
-        <p class="text-Text-Tartiary text-sm">${value.date}</p>
+        <p class="text-Text-Tartiary font-normal text-sm">${value.date}</p>
         <p class="text-gray-400 text-xs">${value.day}</p>
       </div>`;
     },
@@ -27,7 +27,7 @@ export const EventTableColumns = [
     title: "START TIME",
     sortable: true,
     customRender: (value) => {
-      return `<div class="text-Text-Tartiary text-sm">${value}</div>`;
+      return `<div class="text-Text-Tartiary font-normal text-sm">${value}</div>`;
     },
   },
   {
@@ -35,7 +35,7 @@ export const EventTableColumns = [
     title: "CLUB",
     sortable: true,
     customRender: (value) => {
-      return `<div class="text-Text-Tartiary text-sm">${value}</div>`;
+      return `<div class="text-Text-Tartiary font-normal text-sm">${value}</div>`;
     },
   },
   {
@@ -52,7 +52,7 @@ export const EventTableColumns = [
           : "bg-green-500";
 
       return `<div class="gap-2 w-full">
-      <div class="text-gray-500 text-sm flex justify-end">${value.current}/${value.total}</div>
+      <div class="text-gray-500 font-normal text-xs flex justify-end">${value.current}/${value.total}</div>
         <div class="h-2 w-full bg-gray-200 rounded-full">
           <div class="h-2 ${color} rounded-full" style="width: ${percentage}%"></div>
         </div>

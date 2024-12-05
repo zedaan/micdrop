@@ -206,7 +206,7 @@
         <Dropdown class="shadow-none min-w-[200px]" triggeredBy=".dots-menu">
           <DropdownItem
             on:click={() => onSelectDropDown("message_attendee")}
-            class="flex items-center gap-3 no-underline hover:no-underline font-normal "
+            class="flex items-center gap-2 no-underline hover:no-underline font-normal "
             ><img src={Message} alt="Print Tickets" />Message attendee</DropdownItem
           >
           <DropdownItem
