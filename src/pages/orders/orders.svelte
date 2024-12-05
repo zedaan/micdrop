@@ -139,7 +139,11 @@
                 Last 30 days</DropdownItem
               >
             </Dropdown>
-            <Button strokebtn beforeIcon={ExportIcon} className="font-medium text-sm text-gray-900">Export</Button>
+            <Button
+              strokebtn
+              beforeIcon={ExportIcon}
+              className="font-medium text-sm text-gray-900">Export</Button
+            >
           </div>
         </div>
       </div>
@@ -204,6 +208,7 @@
                 bordered={false}
                 isRounded={false}
                 searchable={false}
+                isDraggable={false}
                 {onClickRow}
                 styles={{
                   container:

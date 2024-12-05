@@ -29,6 +29,7 @@ export interface TableProps {
   hasCheckBox?: boolean
   hasRadioButton?: boolean
   isDraggable?: boolean
+  isResizable?: boolean
   isRounded?: boolean
   showTableHead?: boolean
   actionContent?: SvelteComponent | string

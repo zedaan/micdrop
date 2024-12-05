@@ -13,6 +13,7 @@
   export let hasRadioButton: TableProps["hasRadioButton"];
   export let hasActions: TableProps["hasActions"];
   export let isDraggable: TableProps["isDraggable"];
+  export let isResizable: TableProps["isResizable"];
   export let selectAll;
   export let sortData;
   export let toggleSelectAll;
@@ -72,7 +73,9 @@
 
   onMount(() => {
     if (columns && columns.length > 0) {
-      initializeTable();
+      if (isResizable) {
+        initializeTable();
+      }
     }
   });
 

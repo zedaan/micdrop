@@ -19,9 +19,7 @@
   let noteEditText = "";
 </script>
 
-<div
-  class="bg-white shadow-sm rounded-lg p-4 sm:p-6 border border-gray-200 size-full mx-4"
->
+<div class="bg-white shadow-sm rounded-lg p-4 sm:p-6 border border-gray-200">
   <div class="grid grid-cols-2 md:grid-cols-3 gap-10 items-start">
     <div class="space-y-4 text-gray-700">
       <div>
@@ -94,7 +92,7 @@
       </div>
     {/if}
     {#if !submitNote && isNoteEdit}
-      <div class="flex items-center w-full gap-4 flex-wrap">
+      <div class="flex items-center w-full gap-4 flex-wrap pt-3">
         <Input
           type="textarea"
           size="full"

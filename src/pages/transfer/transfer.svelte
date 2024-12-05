@@ -62,7 +62,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
   );
 
   onMount(async () => {
@@ -75,9 +75,13 @@
   <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12 md:col-span-8">
       <TransferCard {transferData} />
-      <div  class=" bg-white shadow-sm rounded-lg p-4 align-center sm:p-6 border border-gray-200 my-4">
+      <div
+        class=" bg-white shadow-sm rounded-lg p-4 align-center sm:p-6 border border-gray-200 my-4"
+      >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 py-3">
-          <h3 class="font-normal text-xl text-Text-Primary">Select the event you want to transfer to</h3>
+          <h3 class="font-normal text-xl text-Text-Primary">
+            Select the event you want to transfer to
+          </h3>
           <Search class="h-10" />
         </div>
         <div class="hidden md:block mt-6">
@@ -93,6 +97,7 @@
               data={filteredEvents}
               bordered={false}
               isRounded={false}
+              isDraggable={false}
               searchable={false}
               {onClickRow}
               styles={{
