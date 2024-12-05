@@ -119,13 +119,13 @@
 
           <div class="sm:block hidden">
             <Button
-              className="sm:mb-2 lg:mb-0"
+              className="sm:mb-2 lg:mb-0 font-medium text-sm text-gray-900"
               strokebtn
               beforeIcon={FilterIcon}>Filters</Button
             >
             <Dropdown class="w-[215px] space-y-3">
               <DropdownItem
-                class="flex items-center gap-3 no-underline hover:no-underline"
+                class="flex items-center gap-2 no-underline hover:no-underline"
                 >Today</DropdownItem
               >
               <DropdownItem
@@ -139,7 +139,7 @@
                 Last 30 days</DropdownItem
               >
             </Dropdown>
-            <Button strokebtn beforeIcon={ExportIcon}>Export</Button>
+            <Button strokebtn beforeIcon={ExportIcon} className="font-medium text-sm text-gray-900">Export</Button>
           </div>
         </div>
       </div>
@@ -169,7 +169,7 @@
             >
             <Dropdown {activeUrl} class="w-[215px] space-y-3">
               <DropdownItem
-                class="flex items-center gap-3 no-underline hover:no-underline"
+                class="flex items-center gap-2 no-underline hover:no-underline"
                 ><img src={PrintIcon} alt="Print Tickets" />Print Tickets</DropdownItem
               >
               <DropdownItem

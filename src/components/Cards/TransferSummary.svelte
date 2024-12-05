@@ -52,7 +52,7 @@
       {#if transferSummary.newTickets.length}
         <ul class="mt-2">
           {#each transferSummary.newTickets as ticket}
-            <li class="flex justify-between text-sm py-3">
+            <li class="flex justify-between py-3">
               <div class="flex flex-col">
                 <span class="text-lg text-gray-900 font-semibold"
                   >{ticket.quantity} x {ticket.type}</span
@@ -117,12 +117,12 @@
 
     <div>
       {#if transferSummary.refund && transferSummary.refund.toFixed(2) > 0}
-        <Badge size="large" status="success" className="w-full h-12">
+        <Badge size="large" status="success" className="w-full h-12 font-normal text-sm">
           The customer will be issued a refund of
           <strong>${transferSummary.refund.toFixed(2)}</strong>
         </Badge>
       {:else if transferSummary.refund}
-        <Badge size="large" status="danger" className="w-full h-12">
+        <Badge size="large" status="danger" className="w-full h-12 font-normal text-sm">
           The customer will be charged
           <strong>${transferSummary.refund.toFixed(2)}</strong>
         </Badge>
@@ -131,7 +131,7 @@
 
     <div class="flex items-center mt-4">
       <Toggle />
-      <label for="waive-difference" class="ml-2 text-sm text-gray-700">
+      <label for="waive-difference" class="ml-2 text-sm text-gray-900 font-normal ">
         Waive the difference
       </label>
     </div>
