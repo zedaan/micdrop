@@ -11,7 +11,7 @@
 </script>
 
 <div class="w-full">
-  <Card size="auto">
+  <Card size="auto" padding={"xl"} class="rounded-2xl">
     <h2 class="text-xl font-normal text-gray-900 mb-1">Transfer Summary</h2>
     <p class="text-base text-gray-500 mb-4 font-normal">
       The customer will be charged or refunded the difference between the
@@ -117,12 +117,20 @@
 
     <div>
       {#if transferSummary.refund && transferSummary.refund.toFixed(2) > 0}
-        <Badge size="large" status="success" className="w-full h-12 font-normal text-sm">
+        <Badge
+          size="large"
+          status="success"
+          className="w-full h-12 font-normal text-sm"
+        >
           The customer will be issued a refund of
           <strong>${transferSummary.refund.toFixed(2)}</strong>
         </Badge>
       {:else if transferSummary.refund}
-        <Badge size="large" status="danger" className="w-full h-12 font-normal text-sm">
+        <Badge
+          size="large"
+          status="danger"
+          className="w-full h-12 font-normal text-sm"
+        >
           The customer will be charged
           <strong>${transferSummary.refund.toFixed(2)}</strong>
         </Badge>
@@ -131,7 +139,10 @@
 
     <div class="flex items-center mt-4">
       <Toggle />
-      <label for="waive-difference" class="ml-2 text-sm text-gray-900 font-normal ">
+      <label
+        for="waive-difference"
+        class="ml-2 text-sm text-gray-900 font-normal"
+      >
         Waive the difference
       </label>
     </div>

@@ -212,9 +212,9 @@
                 {onClickRow}
                 styles={{
                   container:
-                    "w-full align-left overflow-hidden overflow-scroll",
+                    "w-full align-left overflow-hidden overflow-scroll whitespace-nowrap",
                   thead:
-                    "text-[12px] leading-[18px] text-gray-500 border-b font-semibold border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
+                    "text-[12px] leading-[18px] text-gray-500 border-b font-semibold border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal ",
                   tr: "text-[14px] text-gray-500 font-medium leading-[21px]",
                   td: "py-4 border-b border-gray-200",
                 }}
