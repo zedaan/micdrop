@@ -20,6 +20,8 @@
   import TableSkeleton from "@components/Table/TableSkeleton.svelte";
   import Table from "@components/Table/Table.svelte";
   import { goto } from "$app/navigation";
+  import userProfileImg from "@assets/images/image.png";
+
   import { AttendeeTableColumns } from "./../../../pages/orders/OrderTableColumn";
 
   $: orderId = $page.params.id;
@@ -192,6 +194,7 @@
           purchaseDate="Tuesday, July 30, 2024"
           purchaseTime="1:41pm EST"
           paymentMethod="•••• •••• •••• 1865"
+          userDetails={{ userProfileUrl: userProfileImg }}
         />
       </div>
       <div
@@ -199,7 +202,7 @@
       >
         <div>
           <h2 class="py-5 text-xl font-normal text-gray-900">Attendees</h2>
-          <div class="grid grid-cols-12 gap-8">
+          <div class="grid grid-cols-12 gap-3 md:gap-8">
             <div class="col-span-12 md:col-span-6">
               <Search class="h-10" />
             </div>
@@ -282,7 +285,7 @@
                   isDraggable={false}
                   styles={{
                     container:
-                      "w-full align-left overflow-hidden overflow-auto",
+                      "w-full align-left overflow-hidden overflow-auto whitespace-nowrap",
                     thead:
                       "text-xs leading-[18px] text-gray-500 border-b font-semibold border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
                     tr: " text-sm text-gray-500 font-normal leading-[21px]",
@@ -311,6 +314,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-span-12 md:col-span-4 mr-4 sm:ml-4">
       <div class="h-auto">
         <RightCard orderItems={items} {subtotal} {tax} {serviceFee} {total} />

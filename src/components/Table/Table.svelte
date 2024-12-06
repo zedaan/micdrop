@@ -122,7 +122,7 @@
 
 <div
   class={cn(
-    `inline-flex flex-col justify-center items-center bg-white`,
+    ` flex-col justify-center items-center bg-white`,
     {
       "p-3 rounded-md ": isRounded,
     },

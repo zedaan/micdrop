@@ -55,10 +55,10 @@
       { type: "General Admission", quantity: 3, price: 12.99 },
       { type: "VIP Tickets", quantity: 1, price: 24.99 },
     ],
-    subtotal: -16.0,
-    tax: -0.96,
-    serviceFee: -0.32,
-    total: -17.38,
+    subtotal: 16.0,
+    tax: 0.96,
+    serviceFee: 0.32,
+    total: 17.38,
   };
 
   $: filteredEvents = events?.filter((event) =>
@@ -76,7 +76,7 @@
     <div class="col-span-12 md:col-span-8">
       <TransferCard {transferData} />
       <div
-        class=" bg-white shadow-sm rounded-lg p-4 align-center sm:p-6 border border-gray-200 my-4"
+        class=" bg-white shadow-sm rounded-2xl p-4 align-center sm:p-6 border border-gray-200 my-4"
       >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 py-3">
           <h3 class="font-normal text-xl text-Text-Primary">
@@ -101,7 +101,8 @@
               searchable={false}
               {onClickRow}
               styles={{
-                container: "w-full align-left overflow-hidden ",
+                container:
+                  "w-full align-left overflow-hidden whitespace-nowrap overflow-scroll ",
                 thead:
                   "text-xs font-semibold leading-[18px] text-gray-500 border-b border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
                 tr: "text-sm text-gray-400 font-normal leading-[21px]",

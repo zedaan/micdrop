@@ -61,9 +61,10 @@
                 <p>{order.quantity}</p>
               </div>
               <div>
+                {console.log(order.status, "order.status")}
                 <h3 class="text-gray-600 mb-1">Status</h3>
                 <Badge
-                  status={order.status === "Refunded"
+                  status={order.status?.includes("Refunded")
                     ? "warning"
                     : order.status === "Cancelled"
                       ? "danger"
