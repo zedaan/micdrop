@@ -31,9 +31,7 @@
       <span>{date}, {time}</span>
     </div>
 
-    <div
-      class="flex items-center gap-3 mt-2 text-sm text-gray-700 hidden sm:flex"
-    >
+    <div class="md:flex items-center gap-3 mt-2 text-sm text-gray-700 hidden">
       <img src={Calendar} alt="calender" />
       <span>{location}</span>
     </div>
