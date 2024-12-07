@@ -6,6 +6,8 @@
   import { onMount } from "svelte";
   import { EventTableColumns } from "./transferOrderTableColumn";
   import { Search } from "flowbite-svelte";
+  import FullOrder from "@components/Cards/FullOrder.svelte";
+  import ProfileImage from "../../../src/assets/images/image.png"
 
   let search = "";
   let loading = true;
@@ -62,7 +64,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
   onMount(async () => {
@@ -83,6 +85,18 @@
             Select the event you want to transfer to
           </h3>
           <Search class="h-10" />
+        </div>
+        <div class="block md:hidden">
+          <FullOrder
+            image={ProfileImage}
+            title="Jetpack Comedy"
+            date="August 18, 2024"
+            day="Monday"
+            startTime="8:30pm"
+            club="The Hollywood Improv"
+            capacity="75/100"
+            capacityPercentage={75}
+          />
         </div>
         <div class="hidden md:block mt-6">
           {#if loading}
@@ -113,9 +127,6 @@
             />
           {/if}
         </div>
-      </div>
-      <div class="block md:hidden">
-        <h3 class="flex justify-center py-4">Mobile View</h3>
       </div>
     </div>
     <div class="col-span-12 md:col-span-4">
