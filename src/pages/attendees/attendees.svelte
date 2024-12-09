@@ -14,6 +14,7 @@
   import RefundModal from "@components/Orders/RefundModal.svelte";
   import TableSkeleton from "@components/Table/TableSkeleton.svelte";
   import Table from "@components/Table/Table.svelte";
+  import Plus from "../../assets/svg/plus.svg"
 
   import { Attendees, AttendeeTableColumns } from "./attendeesTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
@@ -76,8 +77,8 @@
   <div
     class="border border-gray-200 bg-white shadow-sm rounded-lg m-4 align-center sm:m-6 my-4 pb-10 p-4"
   >
-    <div class=" flex justify-between p-4 tems-center flex-wrap">
-      <h3 class=" text-2xl font-bold text-gray-900 pb-8 md:pb-0">Attendees</h3>
+    <div class=" flex justify-between p-4 md:pb-6 tems-center flex-wrap">
+      <h3 class=" text-xl font-normal text-gray-900 pb-4 md:pb-0">Attendees</h3>
       <div
         class="flex justify-start md:justify-end items-center gap-4 flex-wrap md:flex-nowrap"
       >
@@ -95,12 +96,12 @@
 
     <div class="grid grid-cols-1 gap-3 pl-4">
       <div>
-        <div class="grid grid-cols-12 gap-3 md:gap-8">
+        <div class="grid grid-cols-12 gap-3 md:gap-8 mb-8">
           <div class="col-span-12 sm:col-span-6 md:col-span-6">
             <Button
               strokebtn
               size="xl"
-              beforeIcon={AddMain}
+              beforeIcon={Plus}
               className="font-medium text-sm text-gray-900"
               >Add Attendees</Button
             >
