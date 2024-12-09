@@ -14,7 +14,9 @@
 
 <div>
   {#if data.length > 0}
-    <nav class="inline-flex lg:ml-4 text-sm leading-[14px] font-medium">
+    <nav
+      class="inline-flex lg:ml-4 text-sm leading-[14px] font-medium flex-wrap gap-3"
+    >
       {#each data as crumb, index}
         <div class="flex items-center">
           {#if index > 0}

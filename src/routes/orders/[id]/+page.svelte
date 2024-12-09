@@ -23,6 +23,7 @@
   import userProfileImg from "@assets/images/image.png";
 
   import { AttendeeTableColumns } from "./../../../pages/orders/OrderTableColumn";
+  import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
 
   $: orderId = $page.params.id;
 
@@ -130,9 +131,28 @@
     }
     console.log("Select", value);
   };
+
+  $: breadcrumbData = [
+    { name: "Home", href: "/" },
+    {
+      name: "The Friday Night Comedy Show",
+      href: "/shows/friday-night-comedy",
+    },
+    {
+      name: `Orders`,
+      href: `/shows/friday-night-comedy/orders`,
+    },
+    {
+      name: `#${orderId}`,
+      href: `/shows/friday-night-comedy/orders/${orderId}`,
+    },
+  ];
 </script>
 
 <div class="order-get-by-id">
+  <nav class="py-4">
+    <Breadcrumb data={breadcrumbData} />
+  </nav>
   <div class="grid grid-cols-12 gap-8 px-4 py-5 items-center">
     <div class="col-span-12 md:col-span-6">
       <div class="flex items-center justify-between md:justify-start space-x-2">

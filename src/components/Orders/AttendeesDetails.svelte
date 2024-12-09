@@ -2,7 +2,6 @@
   import { Accordion, AccordionItem } from "flowbite-svelte";
   import Badge from "@components/Badges/Badge.svelte";
   import { Checkmark } from "carbon-icons-svelte";
-  import Button from "@components/Button/Button.svelte";
 
   export let attendees = [];
 
@@ -14,7 +13,9 @@
 </script>
 
 <div class="w-ful pt-4">
-  <div class="flex text-gray-600 bg-gray-100 p-5 items-center space-x-32 uppercase">
+  <div
+    class="flex text-gray-600 bg-gray-100 p-5 items-center space-x-32 uppercase"
+  >
     <h2 class="text-xs font-semibold text-gray-500">Attendee name</h2>
     <h2 class="text-xs font-semibold text-gray-500">Status</h2>
   </div>
@@ -42,19 +43,19 @@
                 >{attendee.attendees.name}</span
               >
               <div
-                class="flex justify-center w-full text-sm font-medium col-span-8 text-nowrap"
+                class="flex justify-end w-full text-sm font-medium col-span-8 text-nowrap"
               >
                 {#if attendee.isChecked}
                   <Badge
                     status="success"
                     icon={Checkmark}
-                    className="rounded-full text-sm  font-medium px-2 mr-10"
+                    className="rounded-full text-sm  font-medium px-2 mr-7"
                   >
                     {attendee.status}
                   </Badge>
                 {:else}
                   <div
-                    class="px-2 py-2 text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-200"
+                    class="px-2 py-2 mr-7 text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-200"
                   >
                     {attendee.status}
                   </div>
@@ -76,14 +77,18 @@
               </div>
               <div>
                 <p class="text-xm text-gray-500 font-semibold">Order ID</p>
-                <p class="text-sm text-gray-500 font-normal break-words">{attendee.orderId}</p>
+                <p class="text-sm text-gray-500 font-normal break-words">
+                  {attendee.orderId}
+                </p>
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4 mt-6">
               <div>
                 <p class="text-xm text-gray-500 font-semibold">Ticket ID</p>
-                <p class="text-sm text-gray-500 font-normal break-words">{attendee.ticketId}</p>
+                <p class="text-sm text-gray-500 font-normal break-words">
+                  {attendee.ticketId}
+                </p>
               </div>
               <div>
                 <p class="text-xm text-gray-500 font-semibold">Sale Type</p>
@@ -99,12 +104,16 @@
 
             <div class="mt-6">
               <p class="text-xm text-gray-500 font-semibold">Ticket Type</p>
-              <p class="text-sm text-gray-500 font-normal break-words">{attendee.ticketType}</p>
+              <p class="text-sm text-gray-500 font-normal break-words">
+                {attendee.ticketType}
+              </p>
             </div>
 
             <div class="mt-6">
-              <p class="text-xs text-gray-500 font-semibold italic">Notes</p>
-              <p class="text-sm text-gray-500 font-normal break-words italic">{attendee.notes}</p>
+              <p class="text-xs text-gray-500 font-semibold">Notes</p>
+              <p class="text-sm text-gray-500 font-normal break-words italic">
+                {attendee.notes}
+              </p>
             </div>
           </div>
         </AccordionItem>

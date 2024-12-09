@@ -4,14 +4,17 @@
   import Table from "@components/Table/Table.svelte";
   import TableSkeleton from "@components/Table/TableSkeleton.svelte";
   import { onMount } from "svelte";
+  import { page } from "$app/stores";
   import { EventTableColumns } from "./transferOrderTableColumn";
   import { Search } from "flowbite-svelte";
   import FullOrder from "@components/Cards/FullOrder.svelte";
   import ProfileImage from "../../../src/assets/images/image.png";
+  import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
 
   let search = "";
   let loading = true;
   let events = [];
+  $: orderId = $page.params.id;
 
   async function getTransferAll() {
     try {
@@ -70,9 +73,32 @@
   onMount(async () => {
     await getTransferAll();
   });
+
+  $: breadcrumbData = [
+    { name: "Home", href: "/" },
+    {
+      name: "The Friday Night Comedy Show",
+      href: "/shows/friday-night-comedy",
+    },
+    {
+      name: `Orders`,
+      href: `/shows/friday-night-comedy/orders`,
+    },
+    {
+      name: `#${orderId}`,
+      href: `/shows/friday-night-comedy/orders/${orderId}`,
+    },
+    {
+      name: `Transfer order`,
+      href: `/shows/friday-night-comedy/orders/${orderId}/transferOrder`,
+    },
+  ];
 </script>
 
 <div class="w-full mx-auto px-4">
+  <nav class="py-4">
+    <Breadcrumb data={breadcrumbData} />
+  </nav>
   <h4 class="font-bold text-3xl text-gray-900 py-4">Transfer order</h4>
   <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12 md:col-span-8">
