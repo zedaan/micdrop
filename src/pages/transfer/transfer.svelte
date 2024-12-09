@@ -7,7 +7,7 @@
   import { EventTableColumns } from "./transferOrderTableColumn";
   import { Search } from "flowbite-svelte";
   import FullOrder from "@components/Cards/FullOrder.svelte";
-  import ProfileImage from "../../../src/assets/images/image.png"
+  import ProfileImage from "../../../src/assets/images/image.png";
 
   let search = "";
   let loading = true;
@@ -64,7 +64,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
   );
 
   onMount(async () => {
@@ -87,16 +87,20 @@
           <Search class="h-10" />
         </div>
         <div class="block md:hidden">
-          <FullOrder
-            image={ProfileImage}
-            title="Jetpack Comedy"
-            date="August 18, 2024"
-            day="Monday"
-            startTime="8:30pm"
-            club="The Hollywood Improv"
-            capacity="75/100"
-            capacityPercentage={75}
-          />
+          {#each filteredEvents as filterEvent}
+            <FullOrder
+              image={filterEvent.show.image}
+              title={filterEvent.show.name}
+              date={filterEvent.date.date}
+              day={filterEvent.show.day}
+              startTime={filterEvent.time}
+              club={filterEvent.club}
+              capacity={`${filterEvent.capacity.current}/ ${filterEvent.capacity.total}`}
+              capacityPercentage={(filterEvent.capacity.current /
+                filterEvent.capacity.total) *
+                100}
+            />
+          {/each}
         </div>
         <div class="hidden md:block mt-6">
           {#if loading}
