@@ -6,6 +6,8 @@
   import { onMount } from "svelte";
   import { EventTableColumns } from "./transferOrderTableColumn";
   import { Search } from "flowbite-svelte";
+  import FullOrder from "@components/Cards/FullOrder.svelte";
+  import ProfileImage from "../../../src/assets/images/image.png";
 
   let search = "";
   let loading = true;
@@ -84,6 +86,22 @@
           </h3>
           <Search class="h-10" />
         </div>
+        <div class="block md:hidden">
+          {#each filteredEvents as filterEvent}
+            <FullOrder
+              image={filterEvent.show.image}
+              title={filterEvent.show.name}
+              date={filterEvent.date.date}
+              day={filterEvent.show.day}
+              startTime={filterEvent.time}
+              club={filterEvent.club}
+              capacity={`${filterEvent.capacity.current}/ ${filterEvent.capacity.total}`}
+              capacityPercentage={(filterEvent.capacity.current /
+                filterEvent.capacity.total) *
+                100}
+            />
+          {/each}
+        </div>
         <div class="hidden md:block mt-6">
           {#if loading}
             <TableSkeleton columns={8} rows={4} />
@@ -113,9 +131,6 @@
             />
           {/if}
         </div>
-      </div>
-      <div class="block md:hidden">
-        <h3 class="flex justify-center py-4">Mobile View</h3>
       </div>
     </div>
     <div class="col-span-12 md:col-span-4">
