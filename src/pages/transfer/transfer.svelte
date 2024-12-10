@@ -4,7 +4,32 @@
   import Table from "@components/Table/Table.svelte";
   import TableSkeleton from "@components/Table/TableSkeleton.svelte";
   import { onMount } from "svelte";
+  import Accordion from "@components/Accordion/Accordion.svelte";
   import { EventTableColumns } from "./transferOrderTableColumn";
+
+    let ticketsData = [
+        [
+            { type: 'General Admission', newPrice: 14.99, difference: 0, complimentary: false },
+            { type: 'VIP', newPrice: 49.99, difference: 35, complimentary: false },
+            { type: 'Mezzanine', newPrice: 34.99, difference: 20.00, complimentary: false },
+        ],
+        [
+            { type: 'Early Bird', newPrice: 9.99, difference: -5, complimentary: true },
+            { type: 'Regular', newPrice: 19.99, difference: 10, complimentary: false },
+            { type: 'Mezzanine', newPrice: 34.99, difference: 20.00, complimentary: false }
+        ],
+        [
+            { type: 'Student', newPrice: 12.99, difference: -2, complimentary: true },
+            { type: 'Premium', newPrice: 59.99, difference: 45, complimentary: false },
+            { type: 'Mezzanine', newPrice: 34.99, difference: 20.00, complimentary: false }
+        ]
+    ];
+
+  let selectedTicket = null;
+
+  function selectTicket(ticket) {
+    selectedTicket = ticket;
+  }
 
   let search = "";
   let loading = true;
@@ -61,7 +86,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
   onMount(async () => {
@@ -74,7 +99,13 @@
   <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12 md:col-span-8">
       <TransferCard {transferData} />
-      <div class="hidden md:block mt-6">
+      <div class="mt-5">
+        {#each ticketsData as tickets, index}
+        <Accordion {tickets} />
+    {/each}
+      </div>
+
+      <!-- <div class="hidden md:block mt-6">
         {#if loading}
           <TableSkeleton columns={8} rows={4} />
         {:else if filteredEvents?.length === 0}
@@ -100,7 +131,7 @@
             keyField="id"
           />
         {/if}
-      </div>
+      </div> -->
       <div class="block md:hidden">
         <h3 class="flex justify-center py-4">Mobile View</h3>
       </div>
