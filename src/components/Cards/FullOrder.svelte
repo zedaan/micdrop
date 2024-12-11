@@ -13,12 +13,15 @@
       : capacityPercentage < 70
         ? "bg-yellow-500"
         : "bg-green-500";
+
+  export let onSelectCheckBox;
 </script>
 
 <div class=" items-start p-4 bg-white border-b border-gray-200 shadow-sm">
   <div class="flex-shrink-0 flex space-x-4">
     <input
       type="radio"
+      on:click={onSelectCheckBox}
       name="event"
       class="mr-2 mt-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
     />

@@ -5,9 +5,9 @@
   import Badge from "@components/Badges/Badge.svelte";
 
   export let transferSummary;
-  function handleAlert() {
-    alert("Hii, This is Function Alert");
-  }
+  export let onClickButton;
+  export let buttonText;
+
 </script>
 
 <div class="w-full">
@@ -112,7 +112,7 @@
       </ul>
     </div>
     <div class="mt-4 pb-5">
-      <Button on:click={handleAlert} size="full">Transfer tickets</Button>
+      <Button on:click={onClickButton} size="full">{buttonText}</Button>
     </div>
 
     <div>
