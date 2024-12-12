@@ -10,10 +10,13 @@
   import FullOrder from "@components/Cards/FullOrder.svelte";
   import ProfileImage from "../../../src/assets/images/image.png";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
+  import TicketAccordion from "@components/Orders/TicketAccordion.svelte";
+  import TicketCardMobile from "./TicketCardMobile.svelte";
 
   let search = "";
   let loading = true;
   let events = [];
+  let isSelectTicket = true;
   $: orderId = $page.params.id;
 
   async function getTransferAll() {
@@ -31,6 +34,7 @@
 
   function rowsSelect(event) {
     const { detail: selectedRows } = event;
+    isSelectTicket =  true
     console.log("Selected Rows:", selectedRows);
   }
 
@@ -67,7 +71,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
   onMount(async () => {
@@ -93,6 +97,60 @@
       href: `/shows/friday-night-comedy/orders/${orderId}/transferOrder`,
     },
   ];
+
+  let ticketsData = [
+    [
+      {
+        type: "General Admission",
+        newPrice: 14.99,
+        difference: 0,
+        complimentary: false,
+        progress:"capacity"
+      },
+      { type: "VIP", newPrice: 49.99, difference: 35, complimentary: false },
+      {
+        type: "Mezzanine",
+        newPrice: 34.99,
+        difference: 20.0,
+        complimentary: false,
+      },
+    ],
+    [
+      {
+        type: "Early Bird",
+        newPrice: 9.99,
+        difference: -5,
+        complimentary: true,
+      },
+      {
+        type: "Regular",
+        newPrice: 19.99,
+        difference: 10,
+        complimentary: false,
+      },
+      {
+        type: "Mezzanine",
+        newPrice: 34.99,
+        difference: 20.0,
+        complimentary: false,
+      },
+    ],
+    [
+      { type: "Student", newPrice: 12.99, difference: -2, complimentary: true },
+      {
+        type: "Premium",
+        newPrice: 59.99,
+        difference: 45,
+        complimentary: false,
+      },
+      {
+        type: "Mezzanine",
+        newPrice: 34.99,
+        difference: 20.0,
+        complimentary: false,
+      },
+    ],
+  ];
 </script>
 
 <div class="w-full mx-auto px-4">
@@ -113,23 +171,44 @@
           <Search class="h-10" />
         </div>
         <div class="block md:hidden">
-          {#each filteredEvents as filterEvent}
-            <FullOrder
-              image={filterEvent.show.image}
-              title={filterEvent.show.name}
-              date={filterEvent.date.date}
-              day={filterEvent.show.day}
-              startTime={filterEvent.time}
-              club={filterEvent.club}
-              capacity={`${filterEvent.capacity.current}/ ${filterEvent.capacity.total}`}
-              capacityPercentage={(filterEvent.capacity.current /
-                filterEvent.capacity.total) *
-                100}
-            />
-          {/each}
+          {#if isSelectTicket}
+          <div>
+            {#each ticketsData as tickets, index}
+              <TicketCardMobile 
+              {tickets} 
+              
+              />
+            {/each}
+          </div>
+          {:else}
+            {#each filteredEvents as filterEvent}
+              <FullOrder
+              onSelectCheckBox={() => isSelectTicket =  true}
+                image={filterEvent.show.image}
+                title={filterEvent.show.name}
+                date={filterEvent.date.date}
+                day={filterEvent.show.day}
+                startTime={filterEvent.time}
+                club={filterEvent.club}
+                capacity={`${filterEvent.capacity.current}/ ${filterEvent.capacity.total}`}
+                capacityPercentage={(filterEvent.capacity.current /
+                  filterEvent.capacity.total) *
+                  100}
+              />
+            {/each}
+          {/if}
         </div>
         <div class="hidden md:block mt-6">
-          {#if loading}
+          {#if isSelectTicket}
+            <div>
+              {#each ticketsData as tickets, index}
+                <TicketAccordion 
+                {tickets} 
+                
+                />
+              {/each}
+            </div>
+          {:else if loading}
             <TableSkeleton columns={8} rows={4} />
           {:else if filteredEvents?.length === 0}
             <div class="text-center text-gray-500 py-4">No events found.</div>
@@ -160,7 +239,11 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-4">
-      <TransferSummary transferSummary={transferSummaryData} />
+      <TransferSummary transferSummary={transferSummaryData}  onClickButton={() => {
+         isSelectTicket =  false
+        alert("Okayy")}
+        } buttonText={isSelectTicket? 'Transfer tickets': 'Continue'}/>
     </div>
   </div>
+  
 </div>
