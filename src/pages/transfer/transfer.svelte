@@ -16,7 +16,7 @@
   let search = "";
   let loading = true;
   let events = [];
-  let isSelectTicket = true;
+  let isSelectTicket = false;
   $: orderId = $page.params.id;
 
   async function getTransferAll() {
@@ -34,7 +34,7 @@
 
   function rowsSelect(event) {
     const { detail: selectedRows } = event;
-    isSelectTicket =  true
+    isSelectTicket = true;
     console.log("Selected Rows:", selectedRows);
   }
 
@@ -71,7 +71,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
   );
 
   onMount(async () => {
@@ -105,7 +105,7 @@
         newPrice: 14.99,
         difference: 0,
         complimentary: false,
-        progress:"capacity"
+        progress: "capacity",
       },
       { type: "VIP", newPrice: 49.99, difference: 35, complimentary: false },
       {
@@ -172,18 +172,15 @@
         </div>
         <div class="block md:hidden">
           {#if isSelectTicket}
-          <div>
-            {#each ticketsData as tickets, index}
-              <TicketCardMobile 
-              {tickets} 
-              
-              />
-            {/each}
-          </div>
+            <div>
+              {#each ticketsData as tickets, index}
+                <TicketCardMobile {tickets} />
+              {/each}
+            </div>
           {:else}
             {#each filteredEvents as filterEvent}
               <FullOrder
-              onSelectCheckBox={() => isSelectTicket =  true}
+                onSelectCheckBox={() => (isSelectTicket = true)}
                 image={filterEvent.show.image}
                 title={filterEvent.show.name}
                 date={filterEvent.date.date}
@@ -202,10 +199,7 @@
           {#if isSelectTicket}
             <div>
               {#each ticketsData as tickets, index}
-                <TicketAccordion 
-                {tickets} 
-                
-                />
+                <TicketAccordion {tickets} />
               {/each}
             </div>
           {:else if loading}
@@ -239,11 +233,14 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-4">
-      <TransferSummary transferSummary={transferSummaryData}  onClickButton={() => {
-         isSelectTicket =  false
-        alert("Okayy")}
-        } buttonText={isSelectTicket? 'Transfer tickets': 'Continue'}/>
+      <TransferSummary
+        transferSummary={transferSummaryData}
+        onClickButton={() => {
+          isSelectTicket = false;
+          alert("Okayy");
+        }}
+        buttonText={isSelectTicket ? "Transfer tickets" : "Continue"}
+      />
     </div>
   </div>
-  
 </div>
