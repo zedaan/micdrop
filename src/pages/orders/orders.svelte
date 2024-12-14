@@ -25,6 +25,7 @@
     ChevronRightOutline,
   } from "flowbite-svelte-icons";
   import { Search } from "flowbite-svelte";
+    import FilterDrowCard from "@components/Cards/FilterDrowCard.svelte";
 
   export function convertToDate(value) {
     return value ? new Date(value).toDateString() : null;
@@ -34,6 +35,24 @@
   let tableData = [];
   let loading = true;
   let pages = [];
+  let salesType = "";
+  let status = "";
+  const salesTypes = ["Online", "Cash", "Complimentary"];
+  const statuses = ["Completed", "Canceled", "Refunded"];
+  let resultsCount = 32; 
+
+  function handleSalesTypeChange(type) {
+    salesType = type;
+  }
+
+  function handleStatusChange(stat) {
+    status = stat;
+  }
+
+  function resetFilters() {
+    salesType = "";
+    status = "";
+  }
 
   async function getOrdersAll() {
     try {
@@ -123,21 +142,17 @@
               strokebtn
               beforeIcon={FilterIcon}>Filters</Button
             >
-            <Dropdown class="w-[215px] space-y-3">
-              <DropdownItem
-                class="flex items-center gap-2 no-underline hover:no-underline"
-                >Today</DropdownItem
-              >
-              <DropdownItem
-                class="flex items-center gap-2 no-underline hover:no-underline"
-              >
-                Last 7 days</DropdownItem
-              >
-              <DropdownItem
-                class="flex items-center gap-2 no-underline hover:no-underline"
-              >
-                Last 30 days</DropdownItem
-              >
+            <Dropdown class="w-[320px] space-y-3">
+              <FilterDrowCard
+                {salesTypes}
+                {statuses}
+                {salesType}
+                {status}
+                {resultsCount}
+                onSalesTypeChange={handleSalesTypeChange}
+                onStatusChange={handleStatusChange}
+                onReset={resetFilters}
+              />
             </Dropdown>
             <Button
               strokebtn
