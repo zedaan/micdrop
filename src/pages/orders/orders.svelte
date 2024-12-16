@@ -25,7 +25,7 @@
     ChevronRightOutline,
   } from "flowbite-svelte-icons";
   import { Search } from "flowbite-svelte";
-    import FilterDrowCard from "@components/Cards/FilterDrowCard.svelte";
+  import FilterDropdownCard from "@components/Cards/FilterDropdownCard.svelte";
 
   export function convertToDate(value) {
     return value ? new Date(value).toDateString() : null;
@@ -35,24 +35,33 @@
   let tableData = [];
   let loading = true;
   let pages = [];
-  let salesType = "";
-  let status = "";
-  const salesTypes = ["Online", "Cash", "Complimentary"];
-  const statuses = ["Completed", "Canceled", "Refunded"];
-  let resultsCount = 32; 
 
-  function handleSalesTypeChange(type) {
-    salesType = type;
-  }
+  const salesTypes = ["Retail", "Wholesale", "Online", "Direct"];
+  const statuses = ["Pending", "Processing", "Completed", "Cancelled"];
 
-  function handleStatusChange(stat) {
-    status = stat;
-  }
+  let selectedSalesTypes = [];
+  let selectedStatuses = [];
+  let resultsCount = 0;
 
-  function resetFilters() {
-    salesType = "";
-    status = "";
-  }
+  const handleSalesTypeChange = (types) => {
+    selectedSalesTypes = types;
+    updateResults();
+  };
+
+  const handleStatusChange = (stats) => {
+    selectedStatuses = stats;
+    updateResults();
+  };
+
+  const handleReset = () => {
+    selectedSalesTypes = [];
+    selectedStatuses = [];
+    resultsCount = 0;
+  };
+
+  const updateResults = () => {
+    resultsCount = selectedSalesTypes.length + selectedStatuses.length;
+  };
 
   async function getOrdersAll() {
     try {
@@ -143,15 +152,15 @@
               beforeIcon={FilterIcon}>Filters</Button
             >
             <Dropdown class="w-[320px] space-y-3">
-              <FilterDrowCard
+              <FilterDropdownCard
                 {salesTypes}
                 {statuses}
-                {salesType}
-                {status}
-                {resultsCount}
+                {selectedSalesTypes}
+                {selectedStatuses}
                 onSalesTypeChange={handleSalesTypeChange}
                 onStatusChange={handleStatusChange}
-                onReset={resetFilters}
+                onReset={handleReset}
+                {resultsCount}
               />
             </Dropdown>
             <Button

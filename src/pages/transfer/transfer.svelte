@@ -219,11 +219,12 @@
               {onClickRow}
               styles={{
                 container:
-                  "w-full align-left overflow-hidden whitespace-nowrap overflow-scroll ",
+                  "w-full align-left overflow-hidden whitespace-nowrap overflow-scroll",
                 thead:
                   "text-xs font-semibold leading-[18px] text-gray-500 border-b border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
-                tr: "text-sm text-gray-400 font-normal leading-[21px]",
-                td: "text-sm border-b border-gray-200",
+                tr: "text-sm text-gray-400 font-normal leading-[21px] ",
+                td: "text-sm border-b border-gray-200 !pr-0 ",
+                th: "pr-0",
               }}
               hasRadioButton={true}
               keyField="id"
