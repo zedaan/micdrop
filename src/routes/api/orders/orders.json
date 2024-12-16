@@ -5,20 +5,20 @@
     {
       "name": "Total Orders",
       "value": 48,
-      "icon": "src/assets/svg/chart.svg"
+      "icon": "/src/assets/svg/chart.svg"
     },
     {
       "name": "Total Attendees",
       "value": "61 of 155",
       "totalAttendees": 155,
       "confirmedAttendees": 61,
-      "icon": "src/assets/svg/user.svg"
+      "icon": "/src/assets/svg/user.svg"
     },
     {
       "name": "Total Revenue",
       "value": "$1,234",
       "totalRevenue": 1234,
-      "icon": "src/assets/svg/dollar.svg"
+      "icon": "/src/assets/svg/dollar.svg"
     }
   ],
   "tableData": [

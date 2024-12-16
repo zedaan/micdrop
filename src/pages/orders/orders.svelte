@@ -25,6 +25,7 @@
     ChevronRightOutline,
   } from "flowbite-svelte-icons";
   import { Search } from "flowbite-svelte";
+  import FilterDropdownCard from "@components/Cards/FilterDropdownCard.svelte";
 
   export function convertToDate(value) {
     return value ? new Date(value).toDateString() : null;
@@ -34,6 +35,33 @@
   let tableData = [];
   let loading = true;
   let pages = [];
+
+  const salesTypes = ["Retail", "Wholesale", "Online", "Direct"];
+  const statuses = ["Pending", "Processing", "Completed", "Cancelled"];
+
+  let selectedSalesTypes = [];
+  let selectedStatuses = [];
+  let resultsCount = 0;
+
+  const handleSalesTypeChange = (types) => {
+    selectedSalesTypes = types;
+    updateResults();
+  };
+
+  const handleStatusChange = (stats) => {
+    selectedStatuses = stats;
+    updateResults();
+  };
+
+  const handleReset = () => {
+    selectedSalesTypes = [];
+    selectedStatuses = [];
+    resultsCount = 0;
+  };
+
+  const updateResults = () => {
+    resultsCount = selectedSalesTypes.length + selectedStatuses.length;
+  };
 
   async function getOrdersAll() {
     try {
@@ -123,21 +151,17 @@
               strokebtn
               beforeIcon={FilterIcon}>Filters</Button
             >
-            <Dropdown class="w-[215px] space-y-3">
-              <DropdownItem
-                class="flex items-center gap-2 no-underline hover:no-underline"
-                >Today</DropdownItem
-              >
-              <DropdownItem
-                class="flex items-center gap-2 no-underline hover:no-underline"
-              >
-                Last 7 days</DropdownItem
-              >
-              <DropdownItem
-                class="flex items-center gap-2 no-underline hover:no-underline"
-              >
-                Last 30 days</DropdownItem
-              >
+            <Dropdown class="w-[320px] space-y-3">
+              <FilterDropdownCard
+                {salesTypes}
+                {statuses}
+                {selectedSalesTypes}
+                {selectedStatuses}
+                onSalesTypeChange={handleSalesTypeChange}
+                onStatusChange={handleStatusChange}
+                onReset={handleReset}
+                {resultsCount}
+              />
             </Dropdown>
             <Button
               strokebtn

@@ -309,7 +309,8 @@
                     thead:
                       "text-xs leading-[18px] text-gray-500 border-b font-semibold border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
                     tr: " text-sm text-gray-500 font-normal leading-[21px]",
-                    td: "text-sm font-normal py-4 border-b border-gray-200",
+                    td: "text-sm font-normal py-4 border-b border-gray-200 pl-0 ",
+                    th: "pl-0",
                   }}
                   hasCheckBox={true}
                   keyField="id"
