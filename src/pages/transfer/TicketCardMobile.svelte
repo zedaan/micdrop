@@ -43,10 +43,8 @@
               on:click={() => selectTicket(ticket.type)}
             >
               <div class="flex items-center gap-3">
-                <Radio
-                  name="example"
-                  checked={true}
-                  class="text-gray-500 font-normal text-sm">{ticket.type}</Radio
+                <Radio name="example" class="text-gray-500 font-normal text-sm"
+                  >{ticket.type}</Radio
                 >
               </div>
               <div class="flex justify-between">

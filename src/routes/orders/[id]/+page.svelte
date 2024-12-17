@@ -153,7 +153,7 @@
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
-  <div class="grid grid-cols-12 gap-8 px-4 py-5 items-center">
+  <div class="grid grid-cols-12 gap-8 px-4 pt-0 py-5 items-center">
     <div class="col-span-12 md:col-span-6">
       <div class="flex items-center justify-between md:justify-start space-x-2">
         <span class=" text-2xl font-bold text-gray-900">Order #{orderId}</span>
@@ -221,7 +221,9 @@
         class="bg-white shadow-sm rounded-lg p-4 align-center sm:p-6 border border-gray-200 my-4"
       >
         <div>
-          <h2 class="py-3 pb-6 text-xl font-normal text-gray-900">Attendees</h2>
+          <h2 class="py-3 pt-1 pb-6 text-xl font-normal text-gray-900">
+            Attendees
+          </h2>
           <div class="grid grid-cols-12 gap-3 md:gap-8">
             <div class="col-span-12 md:col-span-6">
               <Search class="h-10" />

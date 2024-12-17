@@ -15,7 +15,7 @@
   let search = "";
   let loading = true;
   let events = [];
-  let isSelectTicket = true;
+  let isSelectTicket = false;
   $: orderId = $page.params.id;
 
   async function getTransferAll() {

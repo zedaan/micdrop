@@ -49,11 +49,11 @@
                               ? "border-blue-500 bg-blue-50"
                               : "border-gray-300"
                           }`}
-              on:click={() => selectTicket(ticket.type)}
             >
               <div class="flex items-center gap-2">
                 <Radio
                   value={ticket.type}
+                  on:click={() => selectTicket(ticket.type)}
                   bind:group={selectedTicket}
                   class="w-5 h-5"
                 />
@@ -74,7 +74,7 @@
                 ).toFixed(2)}
               </div>
               <div class="text-center pl-12">
-                <Checkbox checked={ticket.complimentary} class="w-5 h-5" />
+                <Checkbox class="w-5 h-5" />
               </div>
               <div class="pl-12">
                 <div
