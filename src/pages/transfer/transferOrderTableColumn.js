@@ -51,7 +51,7 @@ export const EventTableColumns = [
           ? "bg-yellow-500"
           : "bg-green-500";
 
-      return `<div class="gap-2 w-full">
+      return `<div class="gap-2 w-full pr-4">
       <div class="text-gray-500 font-normal text-xs flex justify-end">${value.current}/${value.total}</div>
         <div class="h-2 w-full bg-gray-200 rounded-full">
           <div class="h-2 ${color} rounded-full" style="width: ${percentage}%"></div>
