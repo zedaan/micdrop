@@ -1,7 +1,7 @@
 <script>
-  export let customerName = "John Doe";
-  export let customerEmail = "john.doe@gmail.com";
-  export let tickets = []; 
+  export let customerName = "";
+  export let customerEmail = "";
+  export let tickets = [];
   import { Card, Button } from "flowbite-svelte";
   import { Label, Input } from "flowbite-svelte";
 
@@ -33,7 +33,7 @@
           <Input
             class="font-normal text-sm text-gray-500"
             id="default-input"
-            placeholder="Default input"
+            placeholder="John Doe"
             bind:value={customerName}
           />
         </div>
@@ -44,7 +44,7 @@
             >Customer email address</Label
           >
           <Input
-            placeholder="Default input"
+            placeholder="john.doe@gmail.com"
             class="font-normal text-sm text-gray-500"
             id="email"
             name="email"
@@ -58,7 +58,7 @@
 
     {#each tickets as ticket}
       <div class="flex justify-between space-y-5">
-        <div class="grid grid-cols-3  space-y-5 gap-40 md:gap-10 items-end">
+        <div class="grid grid-cols-3 space-y-5 gap-40 md:gap-10 items-end">
           <div class="flex justify-between items-center border rounded">
             <Button
               size="xs"
@@ -67,7 +67,7 @@
               on:click={() => decrement(ticket.id)}>-</Button
             >
             <span class="md:w-20 text-center text-sm font-normal text-gray-500"
-              >{ticketCounters[ticket.id]|| 0}</span
+              >{ticketCounters[ticket.id] || 0}</span
             >
             <Button
               size="xs"
@@ -76,9 +76,8 @@
               on:click={() => increment(ticket.id)}>+</Button
             >
           </div>
-          <div
-          >
-            <h2 class="font-semibold  text-gray-900">{ticket.name}</h2>
+          <div>
+            <h2 class="font-semibold text-gray-900">{ticket.name}</h2>
             <h2 class="text-gray-500 text-sm font-medium">
               ${ticket.price} each
             </h2>

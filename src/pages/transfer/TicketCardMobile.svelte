@@ -76,9 +76,12 @@
             <div class="grid grid-cols-2 items-center pb-5">
               <div></div>
               <div>
-                <span class="text-xs font-semibold text-gray-500 pb-2">Capacity</span
+                <span class="text-xs font-semibold text-gray-500 pb-2"
+                  >Capacity</span
                 >
-                <div class="text-xs font-normal text-gray-500 pb-2">{capacity}</div>
+                <div class="text-xs font-normal text-gray-500 pb-2">
+                  {capacity}
+                </div>
                 <div class="gap-2 w-full">
                   <div class="gap-2 w-full pr-2">
                     <div class="h-2 w-full bg-gray-200 rounded-full">

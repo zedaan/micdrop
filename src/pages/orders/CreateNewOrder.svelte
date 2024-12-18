@@ -7,7 +7,6 @@
   import { Button } from "flowbite-svelte";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
 
-
   let loading = true;
   let events = [];
   let isSelectTicket = false;
@@ -93,17 +92,15 @@
   <h4 class="font-bold text-3xl text-gray-900 py-4">Create new order</h4>
   <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12 md:col-span-8">
-      <CreateNewOrderForm
-        customerName="John Doe"
-        customerEmail="john.doe@gmail.com"
-        {tickets}
-      />
-      <div>
-        
-      </div>
+      <CreateNewOrderForm {tickets} />
+      <div></div>
       <div class="mt-6 flex justify-between space-x-6 align-middle items-end">
         <div class="col-span-10 w-full">
-          <Label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Promo code</Label>
+          <Label
+            for="default-input"
+            class="block mb-2 text-sm font-medium text-gray-900"
+            >Promo code</Label
+          >
           <Input id="default-input" placeholder="" />
         </div>
         <div class="">
@@ -134,6 +131,5 @@
         buttonText={isSelectTicket ? "Transfer tickets" : "Continue"}
       />
     </div>
-   
   </div>
 </div>
