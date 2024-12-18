@@ -13,8 +13,8 @@
 </script>
 
 <div class="bg-white p-4 pt-2">
-  <Accordion >
-    <AccordionItem open={true}  border={false} borderOpenClass >
+  <Accordion>
+    <AccordionItem open={true} border={false} borderOpenClass>
       <div slot="header" class=" flex w-full items-center justify-between">
         <div class="flex gap-2 items-center">
           <div>
