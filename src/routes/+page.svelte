@@ -9,6 +9,22 @@
   import CalendarContainer from "@components/Calendar/CalendarContainer/CalendarContainer.svelte";
   import FileDropzone from "@components/FileDropzone/FileDropzone.svelte";
   import Cropzone from "@components/CroppingUI/CropZone.svelte";
+  import Payment from "@components/Cards/Payment.svelte";
+  let paymentMethods = [
+    { id: "complimentary", label: "Complimentary" },
+    { id: "cash", label: "Cash" },
+    { id: "check", label: "Check" },
+    { id: "gift-card", label: "Gift Card" },
+    { id: "paid-online", label: "Paid Online" },
+    { id: "credit-card", label: "Credit Card", icons: true },
+  ];
+
+  let selectedMethod = "";
+
+  const handleSelectionChange = (value) => {
+    selectedMethod = value;
+    console.log("Selected Payment Method:", value);
+  };
 
   let modalOpen = false;
 
@@ -118,4 +134,10 @@
     >
     <p>To check more about Button variations, Please check the Storybook</p>
   </div>
+  <Payment
+  title="Choose Your Payment Option"    
+  {paymentMethods}
+  selectedPaymentMethod={selectedMethod}
+  onSelectionChange={handleSelectionChange}
+/>
 </section>

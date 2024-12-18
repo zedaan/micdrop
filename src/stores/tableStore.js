@@ -112,7 +112,7 @@ export function createTableStore(initialData, keyField) {
     })
   }
 
-  return {
+  return  {
     sortedData,
     selectedRows,
     selectAll,

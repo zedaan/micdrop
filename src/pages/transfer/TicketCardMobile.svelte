@@ -13,8 +13,8 @@
 </script>
 
 <div class="bg-white p-0 pb-4">
-  <Accordion border={false}>
-    <AccordionItem open={true}>
+  <Accordion>
+    <AccordionItem open={true} border={false} borderOpenClass>
       <div slot="header" class=" flex w-full items-center justify-between">
         <div class="flex gap-2 items-center">
           <div>
@@ -28,7 +28,7 @@
         </div>
         <div class="text-sm text-gray-500 font-normal pr-5">$14.99</div>
       </div>
-      <div class="space-y-3">
+      <div>
         {#each tickets as ticket}
           <div class="border-b border-gray-300">
             <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -49,7 +49,7 @@
               </div>
               <div class="flex justify-between">
                 <div class="flex flex-col items-start">
-                  <span class="text-xs font-semibold text-gray-500"
+                  <span class="text-xs font-semibold text-gray-500 pb-1"
                     >New Price</span
                   >
                   <div class="text-sm font-normal text-gray-500">
@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <div class="flex flex-col items-start">
-                  <span class="text-xs font-semibold text-gray-500"
+                  <span class="text-xs font-semibold text-gray-500 pb-1"
                     >Difference</span
                   >
                   <div
@@ -76,9 +76,9 @@
             <div class="grid grid-cols-2 items-center pb-5">
               <div></div>
               <div>
-                <span class="text-xs font-semibold text-gray-500">Capacity</span
+                <span class="text-xs font-semibold text-gray-500 pb-2">Capacity</span
                 >
-                <div class="text-xs font-normal text-gray-500">{capacity}</div>
+                <div class="text-xs font-normal text-gray-500 pb-2">{capacity}</div>
                 <div class="gap-2 w-full">
                   <div class="gap-2 w-full pr-2">
                     <div class="h-2 w-full bg-gray-200 rounded-full">
@@ -96,7 +96,7 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-2 items-center pb-5">
+            <div class="grid grid-cols-2 items-center pb-8">
               <div></div>
               <Checkbox checked class="text-xs font-semibold text-gray-500">
                 Complimentary
