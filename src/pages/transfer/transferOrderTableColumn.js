@@ -5,9 +5,9 @@ export const EventTableColumns = [
     title: "SHOW",
     sortable: true,
     customRender: (value) => {
-      return `<div class="flex items-center gap-2">
+      return `<div class="flex items-center gap-6">
         <img src="${value.image}" alt="${value.name}" class="w-12 h-12 rounded-md" />
-        <span class="text-Text-Secondary font-normal text-sm">${value.name}</span>
+        <span class="text-Text-Secondary font-normal text-sm md:pr-4">${value.name}</span>
       </div>`;
     },
   },

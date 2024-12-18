@@ -1,6 +1,6 @@
 <script>
   import TransferSummary from "@components/Cards/TransferSummary.svelte";
-  import NewOrder from "@components/Cards/NewOrderCard.svelte";
+  import CreateNewOrderForm from "@components/Cards/CreateNewOrderForm.svelte";
   import { Label, Input } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -93,7 +93,7 @@
   <h4 class="font-bold text-3xl text-gray-900 py-4">Create new order</h4>
   <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12 md:col-span-8">
-      <NewOrder
+      <CreateNewOrderForm
         customerName="John Doe"
         customerEmail="john.doe@gmail.com"
         {tickets}

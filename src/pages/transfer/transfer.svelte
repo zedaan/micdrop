@@ -15,7 +15,7 @@
   let search = "";
   let loading = true;
   let events = [];
-  let isSelectTicket = false;
+  let isSelectTicket = true;
   $: orderId = $page.params.id;
 
   async function getTransferAll() {
@@ -236,7 +236,7 @@
               searchable={false}
               {onClickRow}
               styles={{
-                container: "w-full align-left whitespace-nowrap ",
+                container: "w-full align-left whitespace-nowrap overflow-y-hidden overflow-x-scroll",
                 thead:
                   "text-xs font-semibold leading-[18px] text-gray-500 border-b border-gray-200 uppercase bg-gray-50 px-4 py-4 cursor-normal",
                 tr: "text-sm text-gray-400 font-normal leading-[21px] ",

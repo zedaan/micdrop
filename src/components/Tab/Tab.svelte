@@ -1,4 +1,4 @@
-<script>
+<script >
   export let items = [];
 
   function scrollToSection(tabId) {
@@ -10,7 +10,7 @@
 </script>
 
 <div
-  class="flex justify-start sm:justify-center gap-6 sm:gap-8 border-b border-b-[#E5E7EB]"
+    class="flex justify-start sm:justify-center gap-6 sm:gap-8 border-b border-b-[#E5E7EB]"
 >
   {#each items as item}
     <div>

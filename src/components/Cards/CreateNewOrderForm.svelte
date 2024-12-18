@@ -67,7 +67,7 @@
               on:click={() => decrement(ticket.id)}>-</Button
             >
             <span class="md:w-20 text-center text-sm font-normal text-gray-500"
-              >{ticketCounters[ticket.id]}</span
+              >{ticketCounters[ticket.id]|| 0}</span
             >
             <Button
               size="xs"
