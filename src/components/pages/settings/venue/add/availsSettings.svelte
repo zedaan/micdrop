@@ -9,7 +9,7 @@
   import EnableCalndar from "@/assets/images/enable_calendar.png";
   import MoreInfoIcon from "@/assets/svg/more-info.svg";
   import ErrorMessage from "@/components/Input/ErrorMessage.svelte";
-  import { getDays, getDaysNumberOptions } from "@/utils/utils";
+  import { getDays, getDaysNumberOptions } from "@/lib/utils/utils";
 
   const dispatch = createEventDispatcher();
 
