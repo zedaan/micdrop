@@ -21,8 +21,7 @@
   import Table from "@components/Table/Table.svelte";
   import { goto } from "$app/navigation";
   import userProfileImg from "@assets/images/image.png";
-
-  import { AttendeeTableColumns } from "./../../../pages/orders/OrderTableColumn";
+  import { AttendeeTableColumns } from "@components/pages/orders/OrderTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
 
   $: orderId = $page.params.id;

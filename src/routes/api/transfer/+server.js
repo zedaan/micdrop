@@ -41,7 +41,7 @@ export async function GET() {
         date: { date: "August 16, 2024", day: "Sunday" },
         time: "8:30 PM",
         club: "The Hollywood Improv",
-        capacity: { current: 80, total: 100 },
+        capacity: { current: 100, total: 100 },
       },
       {
         id: 6,
@@ -57,7 +57,7 @@ export async function GET() {
         date: { date: "August 16, 2024", day: "Sunday" },
         time: "8:30 PM",
         club: "The Hollywood Improv",
-        capacity: { current: 40, total: 100 },
+        capacity: { current: 100, total: 100 },
       },
       {
         id: 8,

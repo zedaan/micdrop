@@ -1,6 +1,6 @@
-import { convertToDate } from './../../../utils/utils'
-import data from './../../../utils/data/table/bookingsTable.json'
-import type { BookingData } from './../../../utils/data/table/types'
+import { convertToDate } from '@lib/utils/utils'
+import data from '@lib/utils/data/table/bookingsTable.json'
+import type { BookingData } from '@lib/utils/data/table/types'
 import type { Meta, StoryObj } from '@storybook/svelte'
 import Table from '../Table.svelte'
 import { basicTableColumn, dummyData, homeTableColumn } from '../data'
@@ -233,7 +233,6 @@ export const View32_Swipeable: Story = {
     hasActions: false,
     columns: homeTableColumn,
     data: dummyData,
-    isMobile: true,
     mobileView: ['sales', 'page_views'],
   },
 }

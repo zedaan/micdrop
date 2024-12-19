@@ -214,7 +214,10 @@
                 Transfer order
               </DropdownItem>
             </Dropdown>
-            <Button beforeIcon={CartIcon} on:click={() => goto('/orders/newOrder')}>Create new order</Button>
+            <Button
+              beforeIcon={CartIcon}
+              on:click={() => goto("/orders/newOrder")}>Create new order</Button
+            >
           </div>
         </div>
         <div class="hidden md:block">

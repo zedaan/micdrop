@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { cn } from "./../../utils/utils";
+  import { cn } from "@lib/utils/utils";
   import { Checkbox } from "flowbite-svelte";
   import { onMount } from "svelte";
   import type { TableProps } from "./types";
-  import DownIcon from "./../../assets/icons/chevron-down.svg";
+  import DownIcon from "@assets/icons/chevron-down.svg";
 
   export let theadStyle;
   export let thStyle;

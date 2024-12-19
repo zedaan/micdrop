@@ -1,8 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Button from "../Button/Button.svelte";
-  import Cancel from "../../assets/svg/cancel.svg";
-  import { cn } from "@/utils/utils";
+  import Cancel from "@assets/svg/cancel.svg";
+  import { cn } from "@utils/utils";
 
   export let contentClass = "";
   export let show = false;

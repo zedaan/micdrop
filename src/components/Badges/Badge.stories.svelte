@@ -1,12 +1,12 @@
 <script context="module">
   import { Story, Template } from "@storybook/addon-svelte-csf";
 
-  import userIcon from "./../../assets/svg/edit-user-02.svg";
-  import successIcon from "./../../assets/icons/Vector.svg";
-  import pinIcon from "./../../assets/icons/Subtract.svg";
-  import crossIcon from "./../../assets/icons/cross.svg";
-  import dotIcon from "./../../assets/icons/Ellipse68.svg";
-  import dotBrandIcon from "./../../assets/icons/Ellipsebrand.svg";
+  import userIcon from "@assets/svg/edit-user-02.svg";
+  import successIcon from "@assets/icons/Vector.svg";
+  import pinIcon from "@assets/icons/Subtract.svg";
+  import crossIcon from "@assets/icons/cross.svg";
+  import dotIcon from "@assets/icons/Ellipse68.svg";
+  import dotBrandIcon from "@assets/icons/Ellipsebrand.svg";
   import Badge from "./Badge.svelte";
 
   export const meta = {

@@ -1,5 +1,5 @@
 <script>
-    import WeeklyView from './../../components/Calendar/Views/WeeklyView.svelte';
+    import WeeklyView from '@components/Calendar/Views/WeeklyView.svelte';
   </script>
   
   <WeeklyView />

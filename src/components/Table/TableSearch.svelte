@@ -1,9 +1,9 @@
 <script>
-  import { cn } from './../../utils/utils'
+  import { cn } from "@lib/utils/utils";
 
-  export let style = ''
-  export let placeholder = 'Search...'
-  export let searchQuery
+  export let style = "";
+  export let placeholder = "Search...";
+  export let searchQuery;
 </script>
 
 <!-- {#if isSearchable} -->
@@ -11,7 +11,7 @@
   <input
     class={cn(
       `text-black border-slate-100 outline-none focus:outline-none focus:ring-0`,
-      style,
+      style
     )}
     type="text"
     bind:value={$searchQuery}

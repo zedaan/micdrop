@@ -1,5 +1,5 @@
 <script>
-  import QuarterView from "../../../components/Calendar/Views/QuarterView.svelte";
+  import QuarterView from "@components/Calendar/Views/QuarterView.svelte";
   
 </script>
 
