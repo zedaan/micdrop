@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { cn } from "./../../utils/utils";
+  import { cn } from "@lib/utils/utils";
   import { Checkbox, Dropdown, DropdownItem, Radio } from "flowbite-svelte";
   import { DotsHorizontalOutline } from "flowbite-svelte-icons";
   import { onMount } from "svelte";

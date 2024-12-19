@@ -68,8 +68,8 @@
       "id": 4,
       "orderId": "#12345681",
       "purchasedBy": {
-        "name": "Irfan Ali",
-        "email": "irfan@gmail.com"
+        "name": "karim",
+        "email": "karim@gmail.com"
       },
       "status": "Refunded",
       "dateOfPurchase": "2024-08-05T14:18:45.000Z",
@@ -82,7 +82,7 @@
       "id": 5,
       "orderId": "#12345682",
       "purchasedBy": {
-        "name": "Michael Brown",
+        "name": "Michael ",
         "email": "michal@cc.com"
       },
       "status": "Partially Refunded",

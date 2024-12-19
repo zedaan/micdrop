@@ -1,5 +1,5 @@
 <script>
-  import Transfer from "@pages/transfer/transfer.svelte";
+  import Transfer from "@components/pages/transfer/transfer.svelte";
 </script>
 
 <Transfer />

@@ -1,6 +1,6 @@
 <script>
   import { getDay, getDaysInMonth, startOfMonth, format } from "date-fns";
-  import { fetchEventsForMonth } from "./../../../services/EventService";
+  import { fetchEventsForMonth } from "../../../lib/services/EventService";
   import Badge from "../../Badges/Badge.svelte";
   import { onMount } from "svelte";
 

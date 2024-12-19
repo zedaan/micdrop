@@ -1,9 +1,9 @@
 <script>
   import { addDays, startOfWeek, format, getHours } from "date-fns";
   import Badge from "../../Badges/Badge.svelte";
-  import { truncateTitle } from "./../../../utils/utils";
+  import { truncateTitle } from "@lib/utils/utils";
   import Button from "./../../Button/Button.svelte";
-  import AddMainBlue from "./../../../assets/svg/add-main-blue.svg";
+  import AddMainBlue from "@assets/svg/add-main-blue.svg";
 
   export let isScheduledBtn = false;
   export let scheduleRecurring = false;

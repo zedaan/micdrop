@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { classNames } from "./../../utils/utils.js";
+  import { classNames } from "@lib/utils/utils";
 
   const dispatch = createEventDispatcher();
 

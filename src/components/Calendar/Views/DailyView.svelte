@@ -1,7 +1,7 @@
 <script>
   import { getHours } from "date-fns";
   import Badge from "../../Badges/Badge.svelte";
-  import { truncateTitle } from "./../../../utils/utils";
+  import { truncateTitle } from "../../../lib/utils/utils";
   import Button from "../../Button/Button.svelte";
   import AddMainBlue from "./../../../assets/svg/add-main-blue.svg";
 
@@ -107,7 +107,7 @@
           {:else if embedCalendar}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
-              class="w-[150px] flex flex-col items-center gap-1.5 p-[5px] embedCalendar  rounded"
+              class="w-[150px] flex flex-col items-center gap-1.5 p-[5px] embedCalendar rounded"
               on:click={() => alert("You clicked on an event!")}
             >
               <img
@@ -210,12 +210,12 @@
       font-size: 8px;
       padding: 4px;
     }
-    .embedCalendar{
+    .embedCalendar {
       box-shadow: none;
     }
     .day-cell {
       flex-direction: row;
-  }
+    }
   }
 
   @keyframes pulse {

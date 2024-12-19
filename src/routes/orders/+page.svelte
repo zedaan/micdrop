@@ -1,5 +1,5 @@
 <script>
-  import Orders from "@pages/orders/orders.svelte";
+  import Orders from "@components/pages/orders/orders";
 </script>
 
 <Orders />

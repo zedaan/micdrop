@@ -14,7 +14,7 @@
   import RefundModal from "@components/Orders/RefundModal.svelte";
   import TableSkeleton from "@components/Table/TableSkeleton.svelte";
   import Table from "@components/Table/Table.svelte";
-  import Plus from "../../assets/svg/plus.svg"
+  import Plus from "@assets/svg/plus.svg";
 
   import { Attendees, AttendeeTableColumns } from "./attendeesTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";

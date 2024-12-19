@@ -1,8 +1,8 @@
 <script>
-  import MessageSent from "./../../assets/icons/notifications/messagesent.svg";
-  import SoldOut from "./../../assets/icons/notifications/sold.svg";
-  import Cancelled from "./../../assets/icons/notifications/cancelled.svg";
-  import Confirmed from "./../../assets/icons/notifications/confirmed.svg";
+  import MessageSent from "@assets/icons/notifications/messagesent.svg";
+  import SoldOut from "@assets/icons/notifications/sold.svg";
+  import Cancelled from "@assets/icons/notifications/cancelled.svg";
+  import Confirmed from "@assets/icons/notifications/confirmed.svg";
 
   export let name;
   export let action;

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { createTableStore } from "../../stores/tableStore";
+  import { createTableStore } from "@lib/stores/tableStore";
   import { onDestroy, onMount } from "svelte";
   import type { Writable } from "svelte/store";
   import { writable } from "svelte/store";
   import type { TableColumn, TableProps } from "./types";
 
-  import { cn } from "./../../utils/utils";
+  import { cn } from "@lib/utils/utils";
   import ExpandedRow from "./ExpandedRow.svelte";
   import TableHead from "./TableHead.svelte";
   import TablePagination from "./TablePagination.svelte";

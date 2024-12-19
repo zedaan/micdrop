@@ -8,7 +8,7 @@ export const AttendeeTableColumns = [
     title: "ATTENDEE NAME",
     sortable: true,
     customRender: (value) => {
-      return `<div class=" gap-2 pr-4">
+      return `<div class=" gap-2 pr-1">
         <div class="text-gray-500 font-normal text-sm">${value.name}</div>
         <span class="text-gray-400 font-normal text-sm">${value.email}</span>
       </div>`;

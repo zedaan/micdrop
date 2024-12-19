@@ -11,11 +11,13 @@
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
   import TicketAccordion from "@components/Orders/TicketAccordion.svelte";
   import TicketCardMobile from "./TicketCardMobile.svelte";
+  import OrderPopup from "@components/Orders/OrderPopup.svelte";
 
   let search = "";
   let loading = true;
   let events = [];
   let isSelectTicket = false;
+  let isSoldOut = false;
   $: orderId = $page.params.id;
 
   async function getTransferAll() {
@@ -31,38 +33,47 @@
     }
   }
 
-  function rowsSelect(event) {
+  async function rowsSelect(event) {
     const { detail: selectedRows } = event;
-    isSelectTicket = true;
-    console.log("Selected Rows:", selectedRows);
+    const capacity = (await selectedRows.length)
+      ? selectedRows[0].capacity.current
+      : 0;
+    if (capacity === 100) {
+      isSoldOut = true;
+      console.log("Selected Rows:", capacity);
+    }
   }
 
-  const transferData = [
+  $: transferData = [
     {
       label: "Transfer from",
       title: "The Friday Night Comedy Show",
       date: "Friday, November 19, 2023, 8:30pm",
     },
-    {
-      label: "Transfer to",
-      title: "The Friday Night Comedy Show",
-      date: "Friday, August 16, 2024, 8:30pm",
-    },
+    isSelectTicket
+      ? {
+          label: "Transfer to",
+          title: "The Friday Night Comedy Show",
+          date: "Friday, August 16, 2024, 8:30pm",
+        }
+      : {},
   ];
 
   const onClickRow = async (row) => {
     console.log(row, "Select Rows");
   };
 
-  const transferSummaryData = {
+  $: transferSummaryData = {
     originalTickets: [
       { type: "General Admission", quantity: 2, price: 14.99 },
       { type: "VIP Tickets", quantity: 2, price: 24.99 },
     ],
-    newTickets: [
-      { type: "General Admission", quantity: 3, price: 12.99 },
-      { type: "VIP Tickets", quantity: 1, price: 24.99 },
-    ],
+    newTickets: isSelectTicket
+      ? [
+          { type: "General Admission", quantity: 3, price: 12.99 },
+          { type: "VIP Tickets", quantity: 1, price: 24.99 },
+        ]
+      : [],
     subtotal: 16.0,
     tax: 0.96,
     serviceFee: 0.32,
@@ -169,6 +180,8 @@
       },
     ],
   ];
+
+  $: console.log(isSoldOut, "isSoldOut");
 </script>
 
 <div class="w-full mx-auto px-4">
@@ -255,11 +268,24 @@
       <TransferSummary
         transferSummary={transferSummaryData}
         onClickButton={() => {
-          isSelectTicket = false;
-          alert("Okayy");
+          isSelectTicket = !isSelectTicket;
         }}
         buttonText={isSelectTicket ? "Transfer tickets" : "Continue"}
       />
     </div>
   </div>
 </div>
+
+<OrderPopup
+  bind:isOpen={isSoldOut}
+  title="Sold out"
+  message="This show is sold out. Would you like to increase ticket capacity to make room for this transfer?"
+  cancelText="Cancel"
+  confirmText="Increase"
+  onCancel={() => {
+    isSoldOut = false;
+  }}
+  onConfirm={() => {
+    isSoldOut = false;
+  }}
+/>

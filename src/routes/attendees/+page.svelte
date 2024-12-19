@@ -1,5 +1,5 @@
 <script>
-  import Attendees from "@pages/attendees/attendees.svelte";
+  import Attendees from "@components/pages/attendees/attendees.svelte";
 </script>
 
 <Attendees />

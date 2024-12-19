@@ -1,5 +1,5 @@
 <script>
-  import { classNames } from "../../utils/utils.js";
+  import { classNames } from "@lib/utils/utils.js";
 
   export let alert = false;
   export let danger = false;

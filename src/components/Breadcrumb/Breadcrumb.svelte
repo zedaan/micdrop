@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import BreadcrumbArrow from "../../assets/svg/arrow-up.svg";
-  import BreadcrumbHome from "../../assets/svg/home.svg";
+  import BreadcrumbArrow from "@assets/svg/arrow-up.svg";
+  import BreadcrumbHome from "@assets/svg/home.svg";
 
   export let data = [];
 

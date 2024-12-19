@@ -3,7 +3,7 @@
   import Button from "../Button/Button.svelte";
   import Badge from "./../Badges/Badge.svelte";
   import AddMainBlue from "../../assets/svg/add-main-blue.svg";
-  import { truncateTitle } from "../../utils/utils";
+  import { truncateTitle } from "../../lib/utils/utils";
 
   export let isScheduledBtn = false;
   export let scheduleRecurring = false;

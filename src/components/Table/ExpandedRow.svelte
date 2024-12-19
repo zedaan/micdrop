@@ -1,5 +1,5 @@
 <script>
-  import { cn } from "./../../utils/utils";
+  import { cn } from "@lib/utils/utils";
 
   export let tdStyle;
   export let trStyle;

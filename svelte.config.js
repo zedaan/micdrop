@@ -1,4 +1,3 @@
-// import adapter from '@sveltejs/adapter-auto';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
@@ -7,10 +6,11 @@ const config = {
 	kit: {
 		alias: {
 			'@components': 'src/components',
-			'@utils': 'src/utils',
-			'@stores': 'src/stores',
+			'@utils': 'src/lib/utils',
+			'@stores': 'src/lib/stores',
 			'@assets': 'src/assets',
-			'@pages': 'src/pages'
+			'@lib': 'src/lib',
+			'@services': 'src/lib/services',
 		},
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
