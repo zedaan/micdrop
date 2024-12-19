@@ -9,7 +9,7 @@
     Label,
   } from "flowbite-svelte";
 
-  import { ROLE_PERMISSION_LIST } from "@/utils/utils";
+  import { ROLE_PERMISSION_LIST } from "@lib/utils/utils";
   import { z } from "zod";
 
   const roleSchema = z.object({
