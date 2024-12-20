@@ -98,6 +98,7 @@
     });
   });
 </script>
+
 <tr
   tabindex="0"
   on:keydown={handleKeydown}
@@ -120,7 +121,7 @@
     <td
       tabindex="0"
       on:keydown={handleKeydown}
-    class={cn("!p-4", tdStyle)}
+      class={cn("!p-4", tdStyle)}
       on:click={handleCheckboxChange}
     >
       <Checkbox
@@ -156,13 +157,12 @@
   <!-- Main columns visible based on screen size -->
   {#each columns as column}
     {#if !screenSize.isMobile || !mobileView.includes(column.key)}
-    
       <td
         tabindex="0"
         on:keydown={handleKeydown}
         on:click={() => onClickRow && onClickRow(row)}
         class={cn(
-          "pl-1 py-2",
+          "pl-2 py-2",
           // "px-6 py-2",
           {
             "border-r": bordered,
@@ -171,7 +171,7 @@
         )}
       >
         {#if column.isComponent && column.customRender(row[column.key])}
-          {@const renderData = column.customRender(row)} 
+          {@const renderData = column.customRender(row)}
           <svelte:component
             this={renderData && renderData.component}
             {...(({ children, ...props }) => props)(renderData.props)}

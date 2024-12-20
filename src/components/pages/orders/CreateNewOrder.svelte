@@ -128,7 +128,7 @@
           isSelectTicket = false;
           alert("Okayy");
         }}
-        buttonText={isSelectTicket ? "Transfer tickets" : "Continue"}
+        buttonText={"Next: Payment >"}
       />
     </div>
   </div>
