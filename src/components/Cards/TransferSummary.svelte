@@ -7,7 +7,6 @@
   export let transferSummary;
   export let onClickButton;
   export let buttonText;
-
 </script>
 
 <div class="w-full">
@@ -112,7 +111,7 @@
       </ul>
     </div>
     <div class="mt-4 pb-5">
-      <Button on:click={onClickButton} size="full">{buttonText}</Button>
+      <Button varitn on:click={onClickButton} size="full">{buttonText}</Button>
     </div>
 
     <div>
