@@ -12,6 +12,8 @@
   import TicketAccordion from "@components/Orders/TicketAccordion.svelte";
   import TicketCardMobile from "./TicketCardMobile.svelte";
   import OrderPopup from "@components/Orders/OrderPopup.svelte";
+  import AlertIcon from "../../../assets/icons/Alert icon.svg";
+  import Alert from "../../../assets/icons/Alert icon.png";
 
   let search = "";
   let loading = true;
@@ -81,7 +83,7 @@
   };
 
   $: filteredEvents = events?.filter((event) =>
-    event?.show?.name?.toLowerCase().includes(search.toLowerCase())
+    event?.show?.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
   onMount(async () => {
@@ -195,12 +197,14 @@
       <div
         class=" bg-white shadow-sm rounded-2xl p-4 align-center sm:p-6 border border-gray-200 my-4"
       >
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 py-3">
-          <h3 class="font-normal text-xl text-Text-Primary">
-            Select the event you want to transfer to
-          </h3>
-          <Search class="h-10" />
-        </div>
+      {#if !isSelectTicket}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 py-3">
+        <h3 class="font-normal text-xl text-Text-Primary">
+          Select the event you want to transfer to
+        </h3>
+        <Search class="h-10" />
+      </div>
+    {/if}
         <div class="block md:hidden">
           {#if isSelectTicket}
             <div>
@@ -276,15 +280,38 @@
   </div>
 </div>
 
-<OrderPopup
+<!-- <OrderPopup
   bind:isOpen={isSoldOut}
+  icon={AlertIcon}
   title="Sold out"
-  message="This show is sold out. Would you like to increase ticket capacity to make room for this transfer?"
+  message="This show is sold out.Would you like to increase ticket capacity to make room for this transfer?"
   cancelText="Cancel"
   confirmText="Increase"
   onCancel={() => {
     isSoldOut = false;
   }}
+  onConfirm={() => {
+    isSoldOut = false;
+  }}
+/> -->
+
+<!-- <OrderPopup
+  bind:isOpen={isSoldOut}
+  icon={Alert}
+  title="Order successful"
+  confirmText="Back to Orders"
+  onConfirm={() => {
+    isSoldOut = false;
+  }}
+/> -->
+
+<OrderPopup
+  bind:isOpen={isSoldOut}
+  icon={AlertIcon}
+  title="Order failed"
+  message="This order did not complete successfully.
+Please try again."
+  confirmText="Ok"
   onConfirm={() => {
     isSoldOut = false;
   }}

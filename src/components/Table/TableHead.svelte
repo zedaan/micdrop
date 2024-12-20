@@ -105,7 +105,7 @@
         data-column={index}
         scope="col"
         class={cn(
-          "px-6 py-4 cursor-pointer",
+          "pl-1 py-4 cursor-pointer",
           {
             "border-b border-r": bordered,
             hidden:
