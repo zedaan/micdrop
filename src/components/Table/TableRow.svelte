@@ -162,7 +162,8 @@
         on:keydown={handleKeydown}
         on:click={() => onClickRow && onClickRow(row)}
         class={cn(
-          "px-6 py-2",
+          "pl-2 py-2",
+          // "px-6 py-2",
           {
             "border-r": bordered,
           },
