@@ -1,5 +1,5 @@
 <script>
-  import TransferSummary from "@components/Cards/TransferSummary.svelte";
+  import OrderSummary from "@components/Cards/OrderSummary.svelte";
   import CreateNewOrderForm from "@components/Cards/CreateNewOrderForm.svelte";
   import { Label, Input } from "flowbite-svelte";
   import { onMount } from "svelte";
@@ -107,12 +107,12 @@
           <Button color="blue">Apply</Button>
         </div>
       </div>
-      <din>
+      <!-- <din>
         <h2 class="mt-6 text-sm font-medium text-Hue-Red">
           Invalid promo code
         </h2>
-      </din>
-      <div class="flex items-center cursor-pointer mt-3 md:mt-12 md:pb-2">
+      </din> -->
+      <div class="flex items-center cursor-pointer mt-3 md:mt-10 md:pb-2">
         <img
           class="h-5 w-5 text-primary-500"
           src="/src/assets/svg/arrow-left.svg"
@@ -122,13 +122,13 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-4">
-      <TransferSummary
+      <OrderSummary
         transferSummary={transferSummaryData}
         onClickButton={() => {
           isSelectTicket = false;
           alert("Okayy");
         }}
-        buttonText={"Next: Payment >"}
+        buttonText={isSelectTicket ? "" : "Next: Payment"}
       />
     </div>
   </div>
