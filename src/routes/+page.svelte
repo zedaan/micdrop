@@ -135,7 +135,7 @@
     <p>To check more about Button variations, Please check the Storybook</p>
   </div>
   <Payment
-  title="Choose Your Payment Option"    
+  title="Payment Method"    
   {paymentMethods}
   selectedPaymentMethod={selectedMethod}
   onSelectionChange={handleSelectionChange}
