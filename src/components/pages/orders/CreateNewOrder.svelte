@@ -7,6 +7,7 @@
   import { Button } from "flowbite-svelte";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
   import StepperNavigation from "./StepperNavigation.svelte";
+  import Payment from "@components/Cards/Payment.svelte";
 
   let steps = ["Tickets", "Payment"];
   let currentStep = 1;
@@ -14,7 +15,24 @@
   let loading = true;
   let events = [];
   let isSelectTicket = false;
+  let customerName = "";
+  let customerEmail = "";
+  let selectedMethod = "";
   $: orderId = $page.params.id;
+
+  let paymentMethods = [
+    { id: "complimentary", label: "Complimentary" },
+    { id: "cash", label: "Cash" },
+    { id: "check", label: "Check" },
+    { id: "gift-card", label: "Gift Card" },
+    { id: "paid-online", label: "Paid Online" },
+    { id: "credit-card", label: "Credit Card", icons: true },
+  ];
+
+  const handleSelectionChange = (value) => {
+    selectedMethod = value;
+    console.log("Selected Payment Method:", value);
+  };
 
   async function getTransferAll() {
     try {
@@ -87,6 +105,8 @@
       href: `/shows/friday-night-comedy/orders/${orderId}/transferOrder`,
     },
   ];
+
+  $: userInfo = customerEmail && customerName ? true : false;
 </script>
 
 <div class="w-full mx-auto px-4">
@@ -112,7 +132,16 @@
   </div>
   <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12 md:col-span-8">
-      <CreateNewOrderForm {tickets} />
+      {#if currentStep === 1}
+        <CreateNewOrderForm bind:customerName bind:customerEmail {tickets} />
+      {/if}
+      {#if currentStep === 2}
+        <Payment
+          {paymentMethods}
+          bind:selectedPaymentMethod={selectedMethod}
+          on:selectionChange={handleSelectionChange}
+        />
+      {/if}
       <div></div>
       <div
         class="mt-6 justify-between space-x-6 align-middle items-end hidden sm:flex"
@@ -149,10 +178,14 @@
       <OrderSummary
         transferSummary={transferSummaryData}
         onClickButton={() => {
-          isSelectTicket = false;
-          alert("Okayy");
+          if (userInfo) {
+            currentStep = 2;
+          }
         }}
-        buttonText={isSelectTicket ? "" : "Next: Payment"}
+        buttonClass={(userInfo && currentStep == 1) || selectedMethod
+          ? "bg-primary-500"
+          : "bg-gray-400"}
+        buttonText={currentStep === 2 ? "Place order" : "Next: Payment"}
       />
     </div>
   </div>

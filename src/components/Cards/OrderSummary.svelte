@@ -5,6 +5,7 @@
 
   export let transferSummary;
   export let onClickButton;
+  export let buttonClass = "bg-gray-400";
   export let buttonText;
 </script>
 
@@ -53,7 +54,7 @@
         on:click={onClickButton}
         afterIcon={chevronRight}
         size="full"
-        class="bg-gray-400 w-full rounded-lg text-white py-3 flex items-center justify-center gap-1 text-sm font-medium"
+        class=" w-full rounded-lg text-white py-3 flex items-center justify-center gap-1 text-sm font-medium {buttonClass}"
       >
         {buttonText}
       </Button>
