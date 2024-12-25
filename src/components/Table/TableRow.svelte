@@ -121,7 +121,7 @@
     <td
       tabindex="0"
       on:keydown={handleKeydown}
-      class={cn("!p-4", tdStyle)}
+      class={cn("!pl-4", tdStyle)}
       on:click={handleCheckboxChange}
     >
       <Checkbox

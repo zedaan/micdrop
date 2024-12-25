@@ -89,7 +89,7 @@
 <thead class={cn("text-xs text-gray-700 uppercase bg-white", theadStyle)}>
   <tr id="header-row">
     {#if hasCheckBox}
-      <th class={cn("!p-4", thStyle)}>
+      <th class={cn("!p-4 ", thStyle)}>
         <Checkbox on:change={toggleSelectAll} checked={$selectAll} />
       </th>
     {/if}
@@ -97,7 +97,7 @@
       <th class={cn("!p-4", thStyle)}></th>
     {/if}
     {#if isDraggable}
-      <th class={cn("!p-4", thStyle)}>No. </th>
+      <th class={cn("!p-2", thStyle)}>No. </th>
     {/if}
     {#each columns as column, index}
       <th
