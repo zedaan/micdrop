@@ -34,7 +34,10 @@
   <form class="space-y-4">
     {#each paymentMethods as method}
       <label
-        class="flex items-center py-6 px-2 border rounded-lg cursor-pointer hover:bg-gray-100 transition"
+        class="flex items-center py-6 px-2 border rounded-lg cursor-pointer hover:bg-primary-50 transition {selectedPaymentMethod ===
+          method.id && method.label === 'Credit Card'
+          ? 'border !rounded-b-none bg-primary-50 border-primary-300'
+          : ''}  "
       >
         <input
           type="radio"
@@ -58,7 +61,7 @@
         {/if}
       </label>
       {#if selectedPaymentMethod === method.id && method.label === "Credit Card"}
-        <div class="p-0">
+        <div class="p-0 !mt-0">
           <CreditCardForm
             {creditCardInfo}
             on:creditCardInfoChange={handleCreditCardInfoChange}
