@@ -1,6 +1,6 @@
-import orders from "./orders.json";
+import {OrdersData} from "./orders";
 export function GET() {
-  return new Response(JSON.stringify(orders), {
+  return new Response(JSON.stringify(OrdersData), {
     headers: {
       "Content-Type": "application/json",
     },

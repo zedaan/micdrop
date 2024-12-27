@@ -8,6 +8,7 @@
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
   import StepperNavigation from "./StepperNavigation.svelte";
   import Payment from "@components/Cards/Payment.svelte";
+  import leftArrow from "@assets/svg/arrow-left.svg";
 
   let steps = ["Tickets", "Payment"];
   let currentStep = 1;
@@ -123,11 +124,7 @@
     </div>
   </div>
   <div class="flex items-center cursor-pointer pb-8 pt-2 sm:hidden">
-    <img
-      class="h-5 w-5 text-primary-500"
-      src="/src/assets/svg/arrow-left.svg"
-      alt="note-edit"
-    />
+    <img class="h-5 w-5 text-primary-500" src={leftArrow} alt="note-edit" />
     <p class="ml-2 text-primary-500 text-sm font-medium">Go Back</p>
   </div>
   <div class="grid grid-cols-12 gap-5">
@@ -166,11 +163,7 @@
       <div
         class=" items-center cursor-pointer mt-3 md:mt-10 md:pb-2 hidden sm:flex"
       >
-        <img
-          class="h-5 w-5 text-primary-500"
-          src="/src/assets/svg/arrow-left.svg"
-          alt="note-edit"
-        />
+        <img class="h-5 w-5 text-primary-500" src={leftArrow} alt="note-edit" />
         <p class="ml-2 text-primary-500 text-sm font-medium">Go Back</p>
       </div>
     </div>

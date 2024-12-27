@@ -10,8 +10,6 @@
   import EnvelopeOutline from "@assets/svg/envelope-outline.svg";
   import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
   import xCircleOutline from "@assets/svg/x-circle-outline.svg";
-  import CurrencyDollar from "carbon-icons-svelte/lib/CurrencyDollar.svelte";
-  import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
 
   export let tdStyle;
   export let trStyle;
@@ -79,13 +77,13 @@
       var directions = e.detail.directions;
       if (directions.left) {
         const buttonContainer = parentElement.querySelector(
-          "#button-container",
+          "#button-container"
         ) as HTMLElement;
         buttonContainer.style.display = "flex";
       }
       if (directions.right) {
         const buttonContainer = parentElement.querySelector(
-          "#button-container",
+          "#button-container"
         ) as HTMLElement;
         buttonContainer.style.display = "none";
       }
@@ -111,7 +109,7 @@
       "bg-blue-100 text-black": $selectedRows.has(row[keyField]),
       "border-b": bordered,
     },
-    trStyle,
+    trStyle
   )}
   draggable={row.draggable || isDraggable}
   on:dragstart={(event) => handleDragStart(index)}
@@ -169,7 +167,7 @@
           {
             "border-r": bordered,
           },
-          tdStyle,
+          tdStyle
         )}
       >
         {#if column.isComponent && column.customRender(row[column.key])}

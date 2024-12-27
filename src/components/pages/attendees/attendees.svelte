@@ -8,7 +8,6 @@
   import TicketOutline from "@assets/icons/ticket-outline.svg";
   import Message from "@assets/icons/message.svg";
   import ExportIcon from "@assets/svg/file-export.svg";
-  import AddMain from "@assets/svg/add-main-01.svg";
   import TransferIcon from "@assets/icons/transfer.svg";
   import { Search } from "flowbite-svelte";
   import RefundModal from "@components/Orders/RefundModal.svelte";
