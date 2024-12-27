@@ -1,7 +1,7 @@
 <script>
   import { writable } from "svelte/store";
-  import LeftArrow from "./../../../assets/svg/arrow-Left-01.svg";
-  import RightArrow from "./../../../assets/svg/arrow-right-01.svg";
+  import LeftArrow from "@assets/svg/arrow-Left-01.svg";
+  import RightArrow from "@assets/svg/arrow-right-01.svg";
   import CaretDown from "carbon-icons-svelte/lib/CaretDown.svelte";
 
   import DailyView from "../Views/DailyView.svelte";
@@ -10,7 +10,7 @@
   import YearlyView from "../Views/YearlyView.svelte";
   import Calendar from "../Calendar.svelte";
   import { onMount } from "svelte";
-  import imageView from "./../../../assets/images/image.png";
+  import imageView from "@assets/images/image.png";
   import SkeletonLoader from "../../SkeletonLoader/SkeletonLoader.svelte";
 
   let date = new Date(

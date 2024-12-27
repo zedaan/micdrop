@@ -5,11 +5,11 @@
   import { onMount } from "svelte";
   import SwipeListener from "swipe-listener";
   import type { TableColumn, TableProps } from "./types";
-  import Message from "@assets/icons/message.svg";
-  import CurrencyDollar from "carbon-icons-svelte/lib/CurrencyDollar.svelte";
-  import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
-  import TicketOutline from "@assets/icons/ticket-outline.svg";
-  import TransferIcon from "@assets/icons/transfer.svg";
+  import FileSearch from "@assets/svg/File_search.svg";
+  import EditOutline from "@assets/svg/edit-outline.svg";
+  import EnvelopeOutline from "@assets/svg/envelope-outline.svg";
+  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
+  import xCircleOutline from "@assets/svg/x-circle-outline.svg";
 
   export let tdStyle;
   export let trStyle;
@@ -206,37 +206,44 @@
         />
         <Dropdown class="shadow-none min-w-[200px]" triggeredBy=".dots-menu">
           <DropdownItem
-            on:click={() => onSelectDropDown("message_attendee")}
+            on:click={() => onSelectDropDown("View_details")}
             class="flex items-center gap-2 no-underline hover:no-underline font-normal "
-            ><img src={Message} alt="Print Tickets" />Message attendee</DropdownItem
+            ><img src={FileSearch} alt="Print Tickets" />View details</DropdownItem
           >
           <DropdownItem
-            on:click={() => onSelectDropDown("switch_ticket_type")}
+            on:click={() => onSelectDropDown("Add_order_note")}
             class="flex items-center gap-2 no-underline hover:no-underline font-normal"
           >
             <img
-              src={TicketOutline}
+              src={EditOutline}
               alt="Resend Confirmation"
               class="font-normal"
-            />Switch ticket type</DropdownItem
+            />Add order note</DropdownItem
           >
           <DropdownItem
-            on:click={() => onSelectDropDown("transfer")}
+            on:click={() => onSelectDropDown("Resend_confirmation")}
             class="flex items-center gap-2 no-underline hover:no-underline font-normal"
           >
-            <img src={TransferIcon} alt="transfer" />Transfer</DropdownItem
+            <img src={EnvelopeOutline} alt="transfer" />Resend confirmation</DropdownItem
           >
           <DropdownItem
-            on:click={() => onSelectDropDown("issue_refund")}
+            on:click={() => onSelectDropDown("Transfer_order")}
             class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-          >
-            <CurrencyDollar />Issue refund</DropdownItem
+            ><img
+              src={ArrowrightArrowleft}
+              alt="Transfer order"
+              class="font-normal"
+            />Transfer order</DropdownItem
           >
           <DropdownItem
-            on:click={() => onSelectDropDown("delete_attendee")}
+            on:click={() => onSelectDropDown("Cancel_order")}
             class="flex items-center gap-2 no-underline hover:no-underline text-red-600 font-normal"
           >
-            <TrashCan />Delete attendee</DropdownItem
+            <img
+              src={xCircleOutline}
+              alt="Transfer order"
+              class="font-normal"
+            />Cancel order</DropdownItem
           >
         </Dropdown>
       {/if}
