@@ -30,11 +30,11 @@
         on:click={decrement}
         disabled={quantity === 0}
       >
-        <Subtract class="w-4 h-4 text-gray-600" />
+        <Subtract class="w-4 h-4 text-gray-900" />
       </button>
 
       <span
-        class="w-12 h-9 flex items-center justify-center text-gray-900 text-sm font-medium"
+        class="w-12 h-9 flex items-center justify-center text-gray-500 text-sm font-medium"
       >
         {quantity}
       </span>
@@ -43,7 +43,7 @@
         class="w-8 h-9 flex items-center justify-center border-l rounded-r-lg bg-gray-100 hover:bg-gray-300"
         on:click={increment}
       >
-        <AddLarge class="w-4 h-4 text-gray-600" />
+        <AddLarge class="w-4 h-4 text-gray-900" />
       </button>
     </div>
     <div class="text-nowrap">
