@@ -9,6 +9,7 @@
   import StepperNavigation from "./StepperNavigation.svelte";
   import Payment from "@components/Cards/Payment.svelte";
   import leftArrow from "@assets/svg/arrow-left.svg";
+  import { goto } from "$app/navigation";
 
   let steps = ["Tickets", "Payment"];
   let currentStep = 1;
@@ -48,14 +49,10 @@
     }
   }
 
-  const transferSummaryData = {
-    originalTickets: [
+  const newOrderData = {
+    tickets: [
       { type: "General Admission", quantity: 2, price: 14.99 },
       { type: "VIP Tickets", quantity: 2, price: 24.99 },
-    ],
-    newTickets: [
-      { type: "General Admission", quantity: 3, price: 12.99 },
-      { type: "VIP Tickets", quantity: 1, price: 24.99 },
     ],
     subtotal: 16.0,
     tax: 0.96,
@@ -99,11 +96,11 @@
     },
     {
       name: `Orders`,
-      href: `/shows/friday-night-comedy/orders`,
+      href: `/orders`,
     },
     {
       name: `New order`,
-      href: `/shows/friday-night-comedy/orders/${orderId}/transferOrder`,
+      href: `/newOrder`,
     },
   ];
 
@@ -160,16 +157,24 @@
           Invalid promo code
         </h2>
       </div> -->
-      <div
-        class=" items-center cursor-pointer mt-3 md:mt-10 md:pb-2 hidden sm:flex"
+      <button
+        class="items-center cursor-pointer mt-3 md:mt-10 md:pb-2 hidden sm:flex"
+        on:click={() => {
+          if (currentStep === 2) {
+            currentStep = 1;
+          } else if (currentStep === 1) {
+            goto("/orders");
+          }
+        }}
+        type="button"
       >
         <img class="h-5 w-5 text-primary-500" src={leftArrow} alt="note-edit" />
         <p class="ml-2 text-primary-500 text-sm font-medium">Go Back</p>
-      </div>
+      </button>
     </div>
     <div class="col-span-12 md:col-span-4">
       <OrderSummary
-        transferSummary={transferSummaryData}
+        ordersSummary={newOrderData}
         onClickButton={() => {
           if (userInfo) {
             currentStep = 2;

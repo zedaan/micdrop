@@ -2,8 +2,9 @@
   export let customerName = "";
   export let customerEmail = "";
   import { Card } from "flowbite-svelte";
-  import { Label, Input } from "flowbite-svelte";
+  import { Label } from "flowbite-svelte";
   import TicketSelector from "./TicketSelector.svelte";
+  import Input from "@components/Input/Input.svelte";
 
   export let tickets = [
     { name: "General Admission", price: 14.99, availability: 50 },
@@ -17,6 +18,8 @@
     const { ticket, quantity } = event.detail;
     ticketQuantities[ticket.name] = quantity;
   }
+
+  console.log(ticketQuantities, "ticketQuantities");
 </script>
 
 <Card size="xl">
@@ -27,7 +30,8 @@
         <div class="mb-6">
           <Label for="default-input" class="block mb-2 ">Customer name</Label>
           <Input
-            class="font-normal text-sm text-gray-500"
+            className="font-normal text-sm text-gray-500"
+            size="full"
             id="default-input"
             placeholder="John Doe"
             bind:value={customerName}
@@ -41,9 +45,11 @@
           >
           <Input
             placeholder="john.doe@gmail.com"
-            class="font-normal text-sm text-gray-500"
+            className="font-normal text-sm text-gray-500 "
             id="email"
             name="email"
+            type="email"
+            size="full"
             bind:value={customerEmail}
           />
         </div>

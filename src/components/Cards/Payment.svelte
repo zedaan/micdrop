@@ -64,7 +64,7 @@
         <div class="p-0 !mt-0">
           <CreditCardForm
             {creditCardInfo}
-            on:creditCardInfoChange={handleCreditCardInfoChange}
+            onCreditCardInfoChange={handleCreditCardInfoChange}
           />
         </div>
       {/if}
