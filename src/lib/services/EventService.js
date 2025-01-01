@@ -7,7 +7,6 @@ export async function fetchEventsFromAPI() {
     const response = await fetch("/api/getEventsForVenue");
     if (response.ok) {
       const events = await response.json();
-      console.log("Fetched events:", events);
       return events.map((event) => ({
         id: event.ID,
         date: event.startDateTime,

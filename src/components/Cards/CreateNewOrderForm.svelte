@@ -18,8 +18,6 @@
     const { ticket, quantity } = event.detail;
     ticketQuantities[ticket.name] = quantity;
   }
-
-  console.log(ticketQuantities, "ticketQuantities");
 </script>
 
 <Card size="xl">

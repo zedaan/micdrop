@@ -26,6 +26,7 @@
   } from "flowbite-svelte-icons";
   import { Search } from "flowbite-svelte";
   import FilterDropdownCard from "@components/Cards/FilterDropdownCard.svelte";
+  import Typography from "@components/Typography/Typography.svelte";
 
   export function convertToDate(value) {
     return value ? new Date(value).toDateString() : null;
@@ -138,7 +139,9 @@
     <section class="bg-white custom-shadow rounded-[16px] p-6">
       <div class="flex items-center justify-between sm:flex-row flex-col">
         <div class="w-full">
-          <h5 class=" text-gray-900 text-xl font-normal">Orders</h5>
+          <Typography variant="h2" weight="medium" className="text-gray-900 ">
+            Orders
+          </Typography>
         </div>
         <div class="w-full flex justify-end gap-2 sm:mt-0 mt-2">
           <div class="relative w-full sm:w-1/2 md:w-3/5">
