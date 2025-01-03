@@ -8,7 +8,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body', 'p'],
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
     },
     weight: {
       control: 'select',
@@ -24,8 +24,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Heading1: Story = {
   args: {
-    variant: "h2",
-    weight: "bold",
+    variant: "h3",
+    weight: "medium",
     className: "",
     slot:'Heading 1'
 
@@ -62,19 +62,6 @@ export const Heading3: Story = {
   })
 };
 
-export const Body: Story = {
-  args: {
-    variant: "h1",
-    weight: 'regular',
-    slot:'This is a body text example that shows how longer content appears.'
-
-  },
-  render: (args) => ({
-    Component: Typography,
-    props: args,
-    
-  })
-};
 
 export const Paragraph: Story = {
   args: {
