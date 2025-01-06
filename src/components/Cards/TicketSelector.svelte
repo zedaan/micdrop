@@ -3,15 +3,23 @@
   import Subtract from "carbon-icons-svelte/lib/Subtract.svelte";
   import AddLarge from "carbon-icons-svelte/lib/AddLarge.svelte";
 
-  export let ticket = { name: "", price: 0, availability: 0 };
-  export let initialQuantity = 0;
+  export let ticket = {
+    id: "",
+    name: "",
+    price: 0,
+    availability: 0,
+    color: "",
+    quantity: 0,
+  };
 
   const dispatch = createEventDispatcher();
-  let quantity = initialQuantity;
+  $: quantity = ticket.quantity || 0;
 
   function increment() {
-    quantity += 1;
-    dispatch("quantityChange", { ticket, quantity });
+    if (quantity < ticket.availability) {
+      quantity += 1;
+      dispatch("quantityChange", { ticket, quantity });
+    }
   }
 
   function decrement() {
@@ -40,8 +48,9 @@
       </span>
 
       <button
-        class="w-8 h-9 flex items-center justify-center border-l rounded-r-lg bg-gray-100 hover:bg-gray-300"
+        class="w-8 h-9 flex items-center justify-center border-l rounded-r-lg bg-gray-100 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         on:click={increment}
+        disabled={quantity >= ticket.availability}
       >
         <AddLarge class="w-4 h-4 text-gray-900" />
       </button>
@@ -61,12 +70,11 @@
       <div class="h-2 bg-gray-200 rounded">
         <div
           class="h-2 rounded-full"
-          class:bg-red-500={ticket.availability < 30}
-          class:bg-yellow-500={ticket.availability >= 30 &&
-            ticket.availability < 70}
-          class:bg-green-500={ticket.availability >= 70}
+          class:bg-red-500={ticket.color === "red"}
+          class:bg-yellow-500={ticket.color === "yellow"}
+          class:bg-green-500={ticket.color === "green"}
           style="width: {ticket.availability}%"
-        ></div>
+        />
       </div>
     </div>
   </div>

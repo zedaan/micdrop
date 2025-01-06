@@ -2,7 +2,7 @@
   "name": "svelte-test",
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 vite",
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",

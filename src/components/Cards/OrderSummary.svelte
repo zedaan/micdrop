@@ -6,7 +6,7 @@
   export let ordersSummary;
   export let onClickButton;
   export let buttonClass = "bg-gray-400";
-  export let buttonText;
+  export let buttonText = "";
 </script>
 
 <div class="w-full">
@@ -30,7 +30,7 @@
                 >
               </div>
               <span class="text-gray-500 font-normal text-base"
-                >-${(ticket.quantity * ticket.price).toFixed(2)}</span
+                >${(ticket.quantity * ticket.price).toFixed(2)}</span
               >
             </li>
           {/each}
