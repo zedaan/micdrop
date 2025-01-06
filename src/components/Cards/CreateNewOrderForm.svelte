@@ -1,22 +1,19 @@
 <script>
-  export let customerName = "";
-  export let customerEmail = "";
   import { Card } from "flowbite-svelte";
   import { Label } from "flowbite-svelte";
   import TicketSelector from "./TicketSelector.svelte";
   import Input from "@components/Input/Input.svelte";
+  import { createEventDispatcher } from "svelte";
 
-  export let tickets = [
-    { name: "General Admission", price: 14.99, availability: 50 },
-    { name: "VIP", price: 24.99, availability: 75 },
-    { name: "Mezzanine", price: 54.99, availability: 18 },
-  ];
+  export let customerName = "";
+  export let customerEmail = "";
+  export let tickets = [];
+  export let errors = {};
 
-  let ticketQuantities = {};
+  const dispatch = createEventDispatcher();
 
   function handleQuantityChange(event) {
-    const { ticket, quantity } = event.detail;
-    ticketQuantities[ticket.name] = quantity;
+    dispatch("quantityChange", event.detail);
   }
 </script>
 
@@ -26,7 +23,7 @@
     <div class="grid grid-cols-2 gap-4 mb-2">
       <div>
         <div class="mb-6">
-          <Label for="default-input" class="block mb-2 ">Customer name</Label>
+          <Label for="default-input" class="block mb-2">Customer name</Label>
           <Input
             className="font-normal text-sm text-gray-500"
             size="full"
@@ -34,6 +31,9 @@
             placeholder="John Doe"
             bind:value={customerName}
           />
+          {#if errors?.name}
+            <p class="text-red-500 text-sm mt-1">{errors.name}</p>
+          {/if}
         </div>
       </div>
       <div>
@@ -43,13 +43,16 @@
           >
           <Input
             placeholder="john.doe@gmail.com"
-            className="font-normal text-sm text-gray-500 "
+            className="font-normal text-sm text-gray-500"
             id="email"
             name="email"
             type="email"
             size="full"
             bind:value={customerEmail}
           />
+          {#if errors?.email}
+            <p class="text-red-500 text-sm mt-1">{errors.email}</p>
+          {/if}
         </div>
       </div>
     </div>
@@ -57,11 +60,7 @@
     <h3 class="text-lg font-normal text-gray-900 mb-4">Select ticket type</h3>
 
     {#each tickets as ticket}
-      <TicketSelector
-        {ticket}
-        initialQuantity={ticketQuantities[ticket.name] || 0}
-        on:quantityChange={handleQuantityChange}
-      />
+      <TicketSelector {ticket} on:quantityChange={handleQuantityChange} />
     {/each}
   </div>
 </Card>
