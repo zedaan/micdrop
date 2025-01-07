@@ -53,3 +53,13 @@ export interface RenderData {
   component: typeof SvelteComponent; 
   props: Record<string, any>; 
 }
+
+export interface DropdownMenuItem {
+  id: string;
+  label: string;
+  alt?: string;
+  className?: string;
+  icon?: string | any; 
+  iconType: 'image' | 'component';
+  action: string;
+}

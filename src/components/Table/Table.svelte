@@ -3,7 +3,7 @@
   import { onDestroy, onMount } from "svelte";
   import type { Writable } from "svelte/store";
   import { writable } from "svelte/store";
-  import type { TableColumn, TableProps } from "./types";
+  import type { DropdownMenuItem, TableColumn, TableProps } from "./types";
 
   import { cn } from "@lib/utils/utils";
   import ExpandedRow from "./ExpandedRow.svelte";
@@ -37,6 +37,7 @@
   export let styles: TableProps["styles"] = {};
   export let onClickRow: () => void = () => {};
   export let onSelectDropDown: () => void = () => {};
+  export let dropdownItems: DropdownMenuItem[] = [];
 
   // Variables to handle device screen sizes
   let isMobile = false;
@@ -113,7 +114,6 @@
   // Clean up event listener on destroy
   onDestroy(() => {
     searchQuery.set("");
-
     if (typeof window !== "undefined") {
       window.removeEventListener("resize", updateMedia);
     }
@@ -189,6 +189,7 @@
           {isDraggable}
           {mobileView}
           {screenSize}
+          {dropdownItems}
         />
 
         <ExpandedRow
