@@ -4,12 +4,7 @@
   import { DotsHorizontalOutline } from "flowbite-svelte-icons";
   import { onMount } from "svelte";
   import SwipeListener from "swipe-listener";
-  import type { TableColumn, TableProps } from "./types";
-  import FileSearch from "@assets/svg/File_search.svg";
-  import EditOutline from "@assets/svg/edit-outline.svg";
-  import EnvelopeOutline from "@assets/svg/envelope-outline.svg";
-  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
-  import xCircleOutline from "@assets/svg/x-circle-outline.svg";
+  import type { DropdownMenuItem, TableColumn, TableProps } from "./types";
 
   export let tdStyle;
   export let trStyle;
@@ -34,6 +29,7 @@
   export let screenSize: TableProps["screenSize"];
   export let onSelectDropDown: (value: string) => void = () => {};
   export let actionsContent; // Slot for custom actions
+  export let dropdownItems: DropdownMenuItem[] = [];
 
   function handleCheckboxChange(event) {
     event.stopPropagation(); // Stop the event from bubbling up to the row
@@ -205,46 +201,24 @@
           class="dots-menu dark:text-white"
         />
         <Dropdown class="shadow-none min-w-[200px]" triggeredBy=".dots-menu">
-          <DropdownItem
-            on:click={() => onSelectDropDown("View_details")}
-            class="flex items-center gap-2 no-underline hover:no-underline font-normal "
-            ><img src={FileSearch} alt="Print Tickets" />View details</DropdownItem
-          >
-          <DropdownItem
-            on:click={() => onSelectDropDown("Add_order_note")}
-            class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-          >
-            <img
-              src={EditOutline}
-              alt="Resend Confirmation"
-              class="font-normal"
-            />Add order note</DropdownItem
-          >
-          <DropdownItem
-            on:click={() => onSelectDropDown("Resend_confirmation")}
-            class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-          >
-            <img src={EnvelopeOutline} alt="transfer" />Resend confirmation</DropdownItem
-          >
-          <DropdownItem
-            on:click={() => onSelectDropDown("Transfer_order")}
-            class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-            ><img
-              src={ArrowrightArrowleft}
-              alt="Transfer order"
-              class="font-normal"
-            />Transfer order</DropdownItem
-          >
-          <DropdownItem
-            on:click={() => onSelectDropDown("Cancel_order")}
-            class="flex items-center gap-2 no-underline hover:no-underline text-red-600 font-normal"
-          >
-            <img
-              src={xCircleOutline}
-              alt="Transfer order"
-              class="font-normal"
-            />Cancel order</DropdownItem
-          >
+          {#each dropdownItems as item}
+            <DropdownItem
+              on:click={() => onSelectDropDown(item.action)}
+              class={cn(
+                "flex items-center gap-2 no-underline hover:no-underline font-normal",
+                item.className
+              )}
+            >
+              {#if item.icon}
+                {#if item.iconType === "image"}
+                  <img src={item.icon} alt={item.alt} class="font-normal" />
+                {:else if item.iconType === "component"}
+                  <svelte:component this={item.icon} size={16} />
+                {/if}
+              {/if}
+              {item.label}
+            </DropdownItem>
+          {/each}
         </Dropdown>
       {/if}
     </td>

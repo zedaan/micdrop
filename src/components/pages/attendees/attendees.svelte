@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { cn } from "@lib/utils/utils";
   import Button from "@components/Button/Button.svelte";
   import { Dropdown, DropdownItem, Pagination } from "flowbite-svelte";
   import DownArrowIcon from "@assets/icons/arrow-up-01.svg";
@@ -21,7 +22,8 @@
     ChevronLeftOutline,
     ChevronRightOutline,
   } from "flowbite-svelte-icons";
-  import OrderDetails from "@components/Orders/OrderDetails.svelte";
+  import EnvelopeOutline from "@assets/svg/envelope-outline.svg";
+  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
   import AttendeesDetails from "@components/Orders/AttendeesDetails.svelte";
 
   let loading = false;
@@ -66,6 +68,46 @@
       href: "/shows/friday-night-comedy",
     },
     { name: "Attendees", href: "/shows/friday-night-comedy/attendees" },
+  ];
+
+  let dropdownItems = [
+    {
+      label: "Message attendee",
+      icon: EnvelopeOutline,
+      alt: "transfer",
+      iconType: "image",
+      action: "meessage_attendee",
+    },
+    {
+      label: "Switch ticket type",
+      icon: TicketOutline,
+      alt: "Switch",
+      iconType: "image",
+      action: "switch_ticket_type",
+    },
+    {
+      label: "Transfer",
+      icon: ArrowrightArrowleft,
+      alt: "Transfer",
+      iconType: "image",
+      action: "transfer",
+    },
+    {
+      label: "Issue refund",
+      icon: CurrencyDollar,
+      className: "font-normal text-sm text-gray-700",
+      alt: "Issue refund",
+      iconType: "component",
+      action: "issue_refund",
+    },
+    {
+      label: "Delete attendee",
+      icon: TrashCan,
+      alt: "Transfer order",
+      iconType: "component",
+      action: "Cancel_order",
+      className: "font-normal text-sm text-red-600",
+    },
   ];
 </script>
 
@@ -114,48 +156,28 @@
                   className="!p-1.5 !px-3 gap-6">Actions</Button
                 >
                 <Dropdown class="w-[215px]">
-                  <DropdownItem
-                    on:click={() => onSelectDropDown("print_tickets")}
-                    class="flex items-center gap-2 text-sm no-underline hover:no-underline font-normal text-gray-700"
-                    ><img src={Message} alt="Print Tickets" />Message attendee</DropdownItem
-                  >
-                  <DropdownItem
-                    on:click={() => onSelectDropDown("switch_ticket_type")}
-                    class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                  >
-                    <img
-                      src={TicketOutline}
-                      alt="Resend Confirmation"
-                      class="font-normal text-sm text-gray-700"
-                    />Switch ticket type</DropdownItem
-                  >
-                  <DropdownItem
-                    on:click={() => {
-                      onSelectDropDown("transfer");
-                    }}
-                    class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                  >
-                    <img
-                      src={TransferIcon}
-                      alt="transfer"
-                      class="font-normal text-sm text-gray-700"
-                    />Transfer</DropdownItem
-                  >
-                  <DropdownItem
-                    on:click={() => onSelectDropDown("issue_refund")}
-                    class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                  >
-                    <CurrencyDollar
-                      class="font-normal text-sm text-gray-700"
-                    />Issue refund</DropdownItem
-                  >
-                  <DropdownItem
-                    on:click={() => onSelectDropDown("delete_attendee")}
-                    class="flex items-center gap-2 no-underline hover:no-underline text-red-600 font-normal"
-                  >
-                    <TrashCan class="font-normal text-sm text-gray-700" />Delete
-                    attendee</DropdownItem
-                  >
+                  {#each dropdownItems as item}
+                    <DropdownItem
+                      on:click={() => onSelectDropDown(item.action)}
+                      class={cn(
+                        "flex items-center gap-2 no-underline hover:no-underline font-normal",
+                        item.className
+                      )}
+                    >
+                      {#if item.icon}
+                        {#if item.iconType === "image"}
+                          <img
+                            src={item.icon}
+                            alt={item.alt}
+                            class="font-normal"
+                          />
+                        {:else if item.iconType === "component"}
+                          <svelte:component this={item.icon} size={16} />
+                        {/if}
+                      {/if}
+                      {item.label}
+                    </DropdownItem>
+                  {/each}
                 </Dropdown>
                 <Button>Check in</Button>
               </div>
@@ -177,6 +199,7 @@
                 data={Attendees}
                 {onSelectDropDown}
                 bordered={false}
+                {dropdownItems}
                 isRounded={false}
                 searchable={false}
                 isDraggable={false}
