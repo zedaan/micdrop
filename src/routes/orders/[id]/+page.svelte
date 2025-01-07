@@ -9,6 +9,7 @@
   import TicketOutline from "@assets/icons/ticket-outline.svg";
   import Message from "@assets/icons/message.svg";
   import SendMessageIcon from "@assets/icons/message.svg";
+  import Print from "@assets/icons/print.svg";
   import TransferIcon from "@assets/icons/transfer.svg";
   import LeftCard from "@components/Cards/LeftCard.svelte";
   import RightCard from "@components/Cards/RightCard.svelte";
@@ -23,6 +24,19 @@
   import userProfileImg from "@assets/images/image.png";
   import { AttendeeTableColumns } from "@components/pages/orders/OrderTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
+  import ReusableToast from "../../../components/Toast/Toast.svelte";
+  let showToast = false; 
+  let toastMessage = "";
+  let toastColor = "green"; 
+
+  function handleDropdownClick() {
+    toastMessage = "Confirmation resent successfully!";
+    toastColor = "green"; 
+    showToast = true;
+
+   
+    setTimeout(() => (showToast = false), 3000);
+  }
 
   $: orderId = $page.params.id;
 
@@ -41,7 +55,7 @@
       const response = await fetch("./../api/orders");
       const data = await response.json();
       const currentData = data.tableData.find(
-        (item) => item.orderId.replace("#", "") === orderId
+        (item) => item.orderId.replace("#", "") === orderId,
       );
       order = currentData || {};
       order = currentData;
@@ -149,6 +163,11 @@
 </script>
 
 <div class="order-get-by-id">
+  {#if showToast}
+    <div class="toast-container show">
+      <ReusableToast message={toastMessage} color={toastColor} />
+    </div>
+  {/if}
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
@@ -180,9 +199,16 @@
           <DropdownItem
             class="flex items-center gap-2 no-underline hover:no-underline"
           >
-            <img src={SendMessageIcon} alt="Resend Confirmation" />Resend
-            confirmation</DropdownItem
+            <img src={Print} alt="Resend Confirmation" />Print tickets</DropdownItem
           >
+          <DropdownItem
+            class="flex items-center gap-2 no-underline hover:no-underline"
+            on:click={handleDropdownClick}
+          >
+            <img src={SendMessageIcon} alt="Resend Confirmation" />
+            Resend confirmation
+          </DropdownItem>
+
           <DropdownItem
             on:click={async () =>
               await goto(`/orders/${orderId}/transferOrder`)}
@@ -360,7 +386,28 @@
   total="Total"
   totalValue="$26.97"
   Actions={[
-    { label: "Go back", strokebtn: true, onClick: handleCancel , class:"w-full rounded-lg text-blue-500 border border-blue-500 text-sm font-medium" },
+    {
+      label: "Go back",
+      strokebtn: true,
+      onClick: handleCancel,
+      class:
+        "w-full rounded-lg text-blue-500 border border-blue-500 text-sm font-medium",
+    },
     { label: "Refund $26.97", danger: true, onClick: handleRefund },
   ]}
 />
+
+<style>
+  .toast-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: none;
+  }
+
+  .toast-container.show {
+    display: block;
+  }
+</style>
