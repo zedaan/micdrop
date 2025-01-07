@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { cn } from "@lib/utils/utils";
   import Button from "@components/Button/Button.svelte";
   import { Dropdown, DropdownItem, Skeleton } from "flowbite-svelte";
   import DownArrowIcon from "@assets/icons/arrow-up-01.svg";
@@ -7,7 +8,6 @@
   import CurrencyDollar from "carbon-icons-svelte/lib/CurrencyDollar.svelte";
   import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
   import TicketOutline from "@assets/icons/ticket-outline.svg";
-  import Message from "@assets/icons/message.svg";
   import SendMessageIcon from "@assets/icons/message.svg";
   import Print from "@assets/icons/print.svg";
   import TransferIcon from "@assets/icons/transfer.svg";
@@ -37,6 +37,7 @@
    
     setTimeout(() => (showToast = false), 3000);
   }
+  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
 
   $: orderId = $page.params.id;
 
@@ -160,6 +161,39 @@
       href: `/shows/friday-night-comedy/orders/${orderId}`,
     },
   ];
+
+  let dropdownItems = [
+    {
+      label: "Switch ticket type",
+      icon: TicketOutline,
+      alt: "Switch",
+      iconType: "image",
+      action: "switch_ticket_type",
+    },
+    {
+      label: "Transfer",
+      icon: ArrowrightArrowleft,
+      alt: "Transfer",
+      iconType: "image",
+      action: "transfer",
+    },
+    {
+      label: "Issue refund",
+      icon: CurrencyDollar,
+      className: "font-normal text-sm text-gray-700",
+      alt: "Issue refund",
+      iconType: "component",
+      action: "issue_refund",
+    },
+    {
+      label: "Delete attendee",
+      icon: TrashCan,
+      alt: "Delete attendee",
+      iconType: "component",
+      action: "delete_attendee",
+      className: "font-normal text-sm text-red-600",
+    },
+  ];
 </script>
 
 <div class="order-get-by-id">
@@ -195,7 +229,13 @@
           className="!p-1.5 !px-3 gap-6 w-[215px] justify-between"
           >Actions</Button
         >
-        <Dropdown class="w-[215px] space-y-3">
+        <Dropdown class="w-[215px] space-y-1 ">
+          <DropdownItem
+            class="flex items-center gap-2 no-underline hover:no-underline"
+          >
+            <img src={SendMessageIcon} alt="Resend Confirmation" />Meessage
+            Attendee</DropdownItem
+          >
           <DropdownItem
             class="flex items-center gap-2 no-underline hover:no-underline"
           >
@@ -214,8 +254,8 @@
               await goto(`/orders/${orderId}/transferOrder`)}
             class="flex items-center gap-2 no-underline hover:no-underline"
           >
-            <img src={TransferIcon} alt="transfer" />Transfer order</DropdownItem
-          >
+            <img src={TransferIcon} alt="transfer" />Transfer
+          </DropdownItem>
         </Dropdown>
         <Button
           danger
@@ -262,50 +302,28 @@
                     className="!p-1.5 !px-3 gap-6">Actions</Button
                   >
                   <Dropdown class="w-[215px] ">
-                    <DropdownItem
-                      on:click={() => onSelectDropDown("print_tickets")}
-                      class="flex items-center gap-2 text-sm no-underline hover:no-underline font-normal text-gray-700"
-                      ><img src={Message} alt="Print Tickets" />Message attendee</DropdownItem
-                    >
-                    <DropdownItem
-                      on:click={() => onSelectDropDown("switch_ticket_type")}
-                      class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                    >
-                      <img
-                        src={TicketOutline}
-                        alt="Resend Confirmation"
-                        class="font-normal text-sm text-gray-700"
-                      />Switch ticket type</DropdownItem
-                    >
-                    <DropdownItem
-                      on:click={() => {
-                        goto(`/orders/${orderId}/transferOrder`);
-                        onSelectDropDown("transfer");
-                      }}
-                      class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                    >
-                      <img
-                        src={TransferIcon}
-                        alt="transfer"
-                        class="font-normal text-sm text-gray-700"
-                      />Transfer</DropdownItem
-                    >
-                    <DropdownItem
-                      on:click={() => onSelectDropDown("issue_refund")}
-                      class="flex items-center gap-2 no-underline hover:no-underline font-normal"
-                    >
-                      <CurrencyDollar
-                        class="font-normal text-sm text-gray-700"
-                      />Issue refund</DropdownItem
-                    >
-                    <DropdownItem
-                      on:click={() => onSelectDropDown("delete_attendee")}
-                      class="flex items-center gap-2 no-underline hover:no-underline text-red-600 font-normal"
-                    >
-                      <TrashCan
-                        class="font-normal text-sm text-gray-700"
-                      />Delete attendee</DropdownItem
-                    >
+                    {#each dropdownItems as item}
+                      <DropdownItem
+                        on:click={() => onSelectDropDown(item.action)}
+                        class={cn(
+                          "flex items-center gap-2 no-underline hover:no-underline font-normal",
+                          item.className
+                        )}
+                      >
+                        {#if item.icon}
+                          {#if item.iconType === "image"}
+                            <img
+                              src={item.icon}
+                              alt={item.alt}
+                              class="font-normal"
+                            />
+                          {:else if item.iconType === "component"}
+                            <svelte:component this={item.icon} size={16} />
+                          {/if}
+                        {/if}
+                        {item.label}
+                      </DropdownItem>
+                    {/each}
                   </Dropdown>
                   <Button deemphasized={true}>Check in</Button>
                 </div>
@@ -330,6 +348,7 @@
                   isRounded={false}
                   searchable={false}
                   isDraggable={false}
+                  {dropdownItems}
                   styles={{
                     container:
                       "w-full align-left overflow-hidden overflow-auto whitespace-nowrap",

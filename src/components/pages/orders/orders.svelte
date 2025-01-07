@@ -19,7 +19,9 @@
   import { Pagination } from "flowbite-svelte";
   import OrderDetails from "@components/Orders/OrderDetails.svelte";
   import { goto } from "$app/navigation";
-
+  import EnvelopeOutline from "@assets/svg/envelope-outline.svg";
+  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
+  import xCircleOutline from "@assets/svg/x-circle-outline.svg";
   import {
     ChevronLeftOutline,
     ChevronRightOutline,
@@ -123,7 +125,33 @@
     },
     { name: "Orders", href: "/shows/friday-night-comedy/orders" },
   ];
+
   $: activeUrl = $page.url.pathname;
+
+  let dropdownItems = [
+    {
+      label: "Resend confirmation",
+      icon: EnvelopeOutline,
+      iconType: "image",
+      alt: "transfer",
+      action: "Resend_confirmation",
+    },
+    {
+      label: "Transfer",
+      icon: ArrowrightArrowleft,
+      alt: "Transfer",
+      iconType: "image",
+      action: "Transfer_order",
+    },
+    {
+      label: "Cancel order",
+      icon: xCircleOutline,
+      alt: "Transfer order",
+      iconType: "image",
+      action: "Cancel_order",
+      className: "text-red-600",
+    },
+  ];
 </script>
 
 <div class="w-full mx-auto px-4 bg-BG-Secondary">
@@ -239,6 +267,7 @@
                 isRounded={false}
                 searchable={false}
                 isDraggable={false}
+                {dropdownItems}
                 {onClickRow}
                 styles={{
                   container:

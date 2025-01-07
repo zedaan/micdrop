@@ -154,7 +154,6 @@
       return true;
     } catch (error) {
       if (error.formErrors?.fieldErrors?.payment) {
-        errors.payment = error.formErrors.fieldErrors.payment;
       }
       if (
         formState.payment.method === "credit-card" &&
