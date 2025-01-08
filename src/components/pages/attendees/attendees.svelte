@@ -260,7 +260,7 @@
   total="Total"
   totalValue="$26.97"
   Actions={[
-    { label: "Go back", strokebtn: true, onClick: handleCancel },
+    { label: "Go back", strokebtn: true, onClick: handleCancel , class:"w-full rounded-lg text-blue-500 border border-blue-500 text-sm font-medium"},
     { label: "Refund $26.97", danger: true, onClick: handleRefund },
   ]}
 />
