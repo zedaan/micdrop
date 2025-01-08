@@ -24,18 +24,11 @@
   import userProfileImg from "@assets/images/image.png";
   import { AttendeeTableColumns } from "@components/pages/orders/OrderTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
-  import ReusableToast from "../../../components/Toast/Toast.svelte";
-  let showToast = false; 
-  let toastMessage = "";
-  let toastColor = "green"; 
+  import { toastStore } from "$lib/stores/toastStore";
 
   function handleDropdownClick() {
-    toastMessage = "Confirmation resent successfully!";
-    toastColor = "green"; 
-    showToast = true;
-
-   
-    setTimeout(() => (showToast = false), 3000);
+    toastStore.addToast("Confirmation resent successfully!", "success");
+    toastStore.updateSettings({ position: "top-right" });
   }
   import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
 
@@ -56,7 +49,7 @@
       const response = await fetch("./../api/orders");
       const data = await response.json();
       const currentData = data.tableData.find(
-        (item) => item.orderId.replace("#", "") === orderId,
+        (item) => item.orderId.replace("#", "") === orderId
       );
       order = currentData || {};
       order = currentData;
@@ -197,11 +190,6 @@
 </script>
 
 <div class="order-get-by-id">
-  {#if showToast}
-    <div class="toast-container show">
-      <ReusableToast message={toastMessage} color={toastColor} />
-    </div>
-  {/if}
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
