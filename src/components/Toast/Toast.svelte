@@ -9,6 +9,7 @@
 
   export let message = "";
   export let type = "success";
+  export let onClose = () => {};
   export let color = "green";
   export let simple = false;
   export let transition = true;

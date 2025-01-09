@@ -403,18 +403,3 @@
     { label: "Refund $26.97", danger: true, onClick: handleRefund },
   ]}
 />
-
-<style>
-  .toast-container {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    display: none;
-  }
-
-  .toast-container.show {
-    display: block;
-  }
-</style>
