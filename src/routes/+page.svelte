@@ -9,6 +9,17 @@
   import CalendarContainer from "@components/Calendar/CalendarContainer/CalendarContainer.svelte";
   import FileDropzone from "@components/FileDropzone/FileDropzone.svelte";
   import Cropzone from "@components/CroppingUI/CropZone.svelte";
+  import Alert from "../assets/icons/Alert icon.svg";
+  import DeleteAttendeeModel from "@components/Orders/DeleteAttendeeModel.svelte";
+  let isModalOpen = false;
+
+  function handleConfirm() {
+    console.log("Confirmed!");
+  }
+
+  function handleCancel() {
+    console.log("Canceled!");
+  }
 
   let modalOpen = false;
 
@@ -32,6 +43,18 @@
 </svelte:head>
 
 <div class="flex flex-col my-5">
+
+  <button on:click={() => (isModalOpen = true)}>Open Modal</button>
+
+  <DeleteAttendeeModel
+  bind:isOpen={isModalOpen}
+  title="Getting Error"
+  message="Do you really want to proceed? This action cannot be undone."
+  cancelText="No"
+  confirmText="Yes"
+  icon={Alert}
+  onCancel={handleCancel}
+  onConfirm={handleConfirm}/>
   <h1>List of Links</h1>
   <ul>
     <li>
