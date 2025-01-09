@@ -24,8 +24,9 @@
   import userProfileImg from "@assets/images/image.png";
   import { AttendeeTableColumns } from "@components/pages/orders/OrderTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
-  import { toastStore } from "$lib/stores/toastStore";
-
+  import DeleteAttendeeModel from "@components/Orders/DeleteAttendeeModel.svelte";
+  import Alert from "../../../assets/icons/Alert icon.svg"
+  
   function handleDropdownClick() {
     toastStore.addToast("Confirmation resent successfully!", "success");
     toastStore.updateSettings({ position: "top-right" });
@@ -36,6 +37,11 @@
 
   let loading = true;
   let order = {};
+  let showDeleteModal = false; 
+  let selectedAttendee = null; 
+
+
+
 
   const STATUS_BADGES = {
     Refunded: "warning",
@@ -78,6 +84,17 @@
   onMount(() => {
     GetOrdersByID();
   });
+
+  const handleDeleteConfirm = () => {
+  console.log(`Attendee deleted: ${selectedAttendee?.attendeeName}`);
+  showDeleteModal = false;
+  selectedAttendee = null;
+};
+
+const handleDeleteCancel = () => {
+  showDeleteModal = false;
+  selectedAttendee = null;
+};
 
   const getBadgeStatus = (status) =>
     STATUS_BADGES[status] || STATUS_BADGES.default;
@@ -133,11 +150,13 @@
   };
 
   const onSelectDropDown = (value) => {
-    if (value === "issue_refund") {
-      showRefundModal = true;
-    }
-    console.log("Select", value);
-  };
+  if (value === "issue_refund") {
+    showRefundModal = true;
+  } else if (value === "delete_attendee") {
+    showDeleteModal = true; 
+
+  }
+};
 
   $: breadcrumbData = [
     { name: "Home", href: "/" },
@@ -179,21 +198,23 @@
       action: "issue_refund",
     },
     {
-      label: "Delete attendee",
-      icon: TrashCan,
-      alt: "Delete attendee",
-      iconType: "component",
-      action: "delete_attendee",
-      className: "font-normal text-sm text-red-600",
-    },
+    label: "Delete attendee",
+    icon: TrashCan,
+    alt: "Delete attendee",
+    iconType: "component",
+    action: "delete_attendee",
+    className: "font-normal text-sm text-red-600",
+  },
   ];
+ 
 </script>
 
 <div class="order-get-by-id">
+ 
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
-  <div class="grid grid-cols-12 gap-8 px-4 pt-0 py-5 items-center">
+  <div class="grid grid-cols- 12 gap-8 px-4 pt-0 py-5 items-center">
     <div class="col-span-12 md:col-span-6">
       <div class="flex items-center justify-between md:justify-start space-x-2">
         <span class=" text-2xl font-bold text-gray-900">Order #{orderId}</span>
@@ -219,8 +240,7 @@
         >
         <Dropdown class="w-[215px] space-y-1 ">
           <DropdownItem
-            class="flex items-center gap-2 no-underline hover:no-underline"
-          >
+            class="flex items-center gap-2 no-underline hover:no-underline"   >
             <img src={SendMessageIcon} alt="Resend Confirmation" />Meessage
             Attendee</DropdownItem
           >
@@ -377,6 +397,18 @@
     </div>
   </div>
 </div>
+{#if showDeleteModal}
+  <DeleteAttendeeModel
+  isOpen={showDeleteModal}
+    title="Getting Error"
+    message="Are you want to Sure to Delete the Attendee"
+    cancelText="No"
+    confirmText="Yes"
+    icon={Alert}
+    onCancel={handleDeleteConfirm}
+    onConfirm={handleDeleteCancel}
+  />
+{/if}
 
 <RefundModal
   show={showRefundModal}
