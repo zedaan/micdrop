@@ -24,7 +24,8 @@
   import userProfileImg from "@assets/images/image.png";
   import { AttendeeTableColumns } from "@components/pages/orders/OrderTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
-  import { toastStore } from "$lib/stores/toastStore";
+  import DeleteAttendeeModel from "@components/Orders/DeleteAttendeeModel.svelte";
+  import Alert from "@assets/icons/Alert icon.svg";
 
   function handleDropdownClick() {
     toastStore.addToast("Confirmation resent successfully!", "success");
@@ -36,6 +37,8 @@
 
   let loading = true;
   let order = {};
+  let showDeleteModal = false;
+  let selectedAttendee = null;
 
   const STATUS_BADGES = {
     Refunded: "warning",
@@ -79,11 +82,22 @@
     GetOrdersByID();
   });
 
+  const handleDeleteConfirm = () => {
+    showDeleteModal = false;
+    selectedAttendee = null;
+  };
+
+  const handleDeleteCancel = () => {
+    showDeleteModal = false;
+    selectedAttendee = null;
+  };
+
   const getBadgeStatus = (status) =>
     STATUS_BADGES[status] || STATUS_BADGES.default;
 
   function rowsSelect(event) {
     const { detail: selectedRows } = event;
+    selectedAttendee = selectedRows.length;
     console.log("Selected Rows:", selectedRows);
   }
 
@@ -135,8 +149,9 @@
   const onSelectDropDown = (value) => {
     if (value === "issue_refund") {
       showRefundModal = true;
+    } else if (value === "delete_attendee" && selectedAttendee) {
+      showDeleteModal = true;
     }
-    console.log("Select", value);
   };
 
   $: breadcrumbData = [
@@ -193,7 +208,7 @@
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
-  <div class="grid grid-cols-12 gap-8 px-4 pt-0 py-5 items-center">
+  <div class="grid grid-cols- 12 gap-8 px-4 pt-0 py-5 items-center">
     <div class="col-span-12 md:col-span-6">
       <div class="flex items-center justify-between md:justify-start space-x-2">
         <span class=" text-2xl font-bold text-gray-900">Order #{orderId}</span>
@@ -377,6 +392,19 @@
     </div>
   </div>
 </div>
+
+{#if showDeleteModal}
+  <DeleteAttendeeModel
+    isOpen={showDeleteModal}
+    title="Selected Attendees {selectedAttendee || ''}"
+    message="Are you want to Sure to Delete the Attendees"
+    cancelText="No"
+    confirmText="Yes"
+    icon={Alert}
+    onCancel={handleDeleteConfirm}
+    onConfirm={handleDeleteCancel}
+  />
+{/if}
 
 <RefundModal
   show={showRefundModal}
