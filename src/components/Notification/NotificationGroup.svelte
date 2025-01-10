@@ -1,37 +1,7 @@
 <script>
+  import { formatNotificationTime, isToday } from "@utils/utils";
   import NotificationList from "./NotificationList.svelte";
   export let notifications = [];
-
-  function isToday(dateString) {
-    const notificationDate = new Date(dateString);
-    const today = new Date();
-    return (
-      notificationDate.getDate() === today.getDate() &&
-      notificationDate.getMonth() === today.getMonth() &&
-      notificationDate.getFullYear() === today.getFullYear()
-    );
-  }
-
-  function formatNotificationTime(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const timeDiff = (now - date) / 1000;
-
-    if (isToday(dateString)) {
-      if (timeDiff < 60) return `${Math.floor(timeDiff)} seconds ago`;
-      if (timeDiff < 3600) return `${Math.floor(timeDiff / 60)} minutes ago`;
-      if (timeDiff < 86400) return `${Math.floor(timeDiff / 3600)} hours ago`;
-    }
-
-    const options = {
-      weekday: "long",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    };
-
-    return date.toLocaleString("en-US", options);
-  }
 
   let todayNotifications = [];
   let earlierNotifications = [];
@@ -74,7 +44,6 @@
           message={notification.message}
           time={formatNotificationTime(notification.time)}
           avatar={notification.avatar}
-          statusIcon={notification.statusIcon}
           status={notification.status}
         />
       {/each}

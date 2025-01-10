@@ -26,12 +26,14 @@
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
   import DeleteAttendeeModel from "@components/Orders/DeleteAttendeeModel.svelte";
   import Alert from "@assets/icons/Alert icon.svg";
+  import { toast } from "svelte-sonner";
+  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
 
   function handleDropdownClick() {
-    toastStore.addToast("Confirmation resent successfully!", "success");
-    toastStore.updateSettings({ position: "top-right" });
+    toast.success("Confirmation resent successfully!", {
+      position: "top-right",
+    });
   }
-  import ArrowrightArrowleft from "@assets/svg/arrow-right-arrow-left.svg";
 
   $: orderId = $page.params.id;
 
@@ -208,7 +210,7 @@
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
-  <div class="grid grid-cols- 12 gap-8 px-4 pt-0 py-5 items-center">
+  <div class="grid grid-cols-12 gap-8 px-4 pt-0 py-5 items-center">
     <div class="col-span-12 md:col-span-6">
       <div class="flex items-center justify-between md:justify-start space-x-2">
         <span class=" text-2xl font-bold text-gray-900">Order #{orderId}</span>
@@ -396,10 +398,10 @@
 {#if showDeleteModal}
   <DeleteAttendeeModel
     isOpen={showDeleteModal}
-    title="Selected Attendees {selectedAttendee || ''}"
-    message="Are you want to Sure to Delete the Attendees"
-    cancelText="No"
-    confirmText="Yes"
+    title="Delete attendees"
+    message="Are you sure you want to delete the attendees?"
+    cancelText="Cancel"
+    confirmText="Delete"
     icon={Alert}
     onCancel={handleDeleteConfirm}
     onConfirm={handleDeleteCancel}
