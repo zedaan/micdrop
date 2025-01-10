@@ -25,8 +25,8 @@
   import { AttendeeTableColumns } from "@components/pages/orders/OrderTableColumn";
   import Breadcrumb from "@components/Breadcrumb/Breadcrumb.svelte";
   import DeleteAttendeeModel from "@components/Orders/DeleteAttendeeModel.svelte";
-  import Alert from "../../../assets/icons/Alert icon.svg"
-  
+  import Alert from "@assets/icons/Alert icon.svg";
+
   function handleDropdownClick() {
     toastStore.addToast("Confirmation resent successfully!", "success");
     toastStore.updateSettings({ position: "top-right" });
@@ -37,11 +37,8 @@
 
   let loading = true;
   let order = {};
-  let showDeleteModal = false; 
-  let selectedAttendee = null; 
-
-
-
+  let showDeleteModal = false;
+  let selectedAttendee = null;
 
   const STATUS_BADGES = {
     Refunded: "warning",
@@ -86,21 +83,21 @@
   });
 
   const handleDeleteConfirm = () => {
-  console.log(`Attendee deleted: ${selectedAttendee?.attendeeName}`);
-  showDeleteModal = false;
-  selectedAttendee = null;
-};
+    showDeleteModal = false;
+    selectedAttendee = null;
+  };
 
-const handleDeleteCancel = () => {
-  showDeleteModal = false;
-  selectedAttendee = null;
-};
+  const handleDeleteCancel = () => {
+    showDeleteModal = false;
+    selectedAttendee = null;
+  };
 
   const getBadgeStatus = (status) =>
     STATUS_BADGES[status] || STATUS_BADGES.default;
 
   function rowsSelect(event) {
     const { detail: selectedRows } = event;
+    selectedAttendee = selectedRows.length;
     console.log("Selected Rows:", selectedRows);
   }
 
@@ -150,13 +147,12 @@ const handleDeleteCancel = () => {
   };
 
   const onSelectDropDown = (value) => {
-  if (value === "issue_refund") {
-    showRefundModal = true;
-  } else if (value === "delete_attendee") {
-    showDeleteModal = true; 
-
-  }
-};
+    if (value === "issue_refund") {
+      showRefundModal = true;
+    } else if (value === "delete_attendee" && selectedAttendee) {
+      showDeleteModal = true;
+    }
+  };
 
   $: breadcrumbData = [
     { name: "Home", href: "/" },
@@ -198,19 +194,17 @@ const handleDeleteCancel = () => {
       action: "issue_refund",
     },
     {
-    label: "Delete attendee",
-    icon: TrashCan,
-    alt: "Delete attendee",
-    iconType: "component",
-    action: "delete_attendee",
-    className: "font-normal text-sm text-red-600",
-  },
+      label: "Delete attendee",
+      icon: TrashCan,
+      alt: "Delete attendee",
+      iconType: "component",
+      action: "delete_attendee",
+      className: "font-normal text-sm text-red-600",
+    },
   ];
- 
 </script>
 
 <div class="order-get-by-id">
- 
   <nav class="py-4">
     <Breadcrumb data={breadcrumbData} />
   </nav>
@@ -240,7 +234,8 @@ const handleDeleteCancel = () => {
         >
         <Dropdown class="w-[215px] space-y-1 ">
           <DropdownItem
-            class="flex items-center gap-2 no-underline hover:no-underline"   >
+            class="flex items-center gap-2 no-underline hover:no-underline"
+          >
             <img src={SendMessageIcon} alt="Resend Confirmation" />Meessage
             Attendee</DropdownItem
           >
@@ -397,11 +392,12 @@ const handleDeleteCancel = () => {
     </div>
   </div>
 </div>
+
 {#if showDeleteModal}
   <DeleteAttendeeModel
-  isOpen={showDeleteModal}
-    title="Getting Error"
-    message="Are you want to Sure to Delete the Attendee"
+    isOpen={showDeleteModal}
+    title="Selected Attendees {selectedAttendee || ''}"
+    message="Are you want to Sure to Delete the Attendees"
     cancelText="No"
     confirmText="Yes"
     icon={Alert}
