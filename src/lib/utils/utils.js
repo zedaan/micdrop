@@ -293,3 +293,34 @@ export const getDateOfMonth = (dateString) => {
   const date = new Date(dateString);
   return date.getUTCDate();
 };
+
+export function isToday(dateString) {
+  const notificationDate = new Date(dateString);
+  const today = new Date();
+  return (
+    notificationDate.getDate() === today.getDate() &&
+    notificationDate.getMonth() === today.getMonth() &&
+    notificationDate.getFullYear() === today.getFullYear()
+  );
+}
+
+export function formatNotificationTime(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const timeDiff = (now - date) / 1000;
+
+  if (isToday(dateString)) {
+    if (timeDiff < 60) return `${Math.floor(timeDiff)} seconds ago`;
+    if (timeDiff < 3600) return `${Math.floor(timeDiff / 60)} minutes ago`;
+    if (timeDiff < 86400) return `${Math.floor(timeDiff / 3600)} hours ago`;
+  }
+
+  const options = {
+    weekday: "long",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  return date.toLocaleString("en-US", options);
+}
