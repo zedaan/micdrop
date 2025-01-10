@@ -11,6 +11,7 @@
       closeButton={true}
       offset="10px"
       toastOptions={{
+        class: "w-[410px] right-0",
         classes: {
           error: "text-red-400",
           success: "text-green-400",

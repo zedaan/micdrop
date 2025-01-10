@@ -1,10 +1,9 @@
 <script>
-  import { afterUpdate, onMount } from "svelte";
+  import { onMount } from "svelte";
   import { notificationsData } from "./data";
   import { toast } from "svelte-sonner";
-  // import NotificationList from "@components/Notification/NotificationList.svelte";
-  // import { formatNotificationTime } from "@utils/utils";
   import Notification from "@components/Notification/Notification.svelte";
+  import ToastNotifactions from "@components/ToastNotifactions/ToastNotifactions.svelte";
 
   let notifications = [];
 
@@ -28,32 +27,11 @@
   }
 
   onMount(() => {
-    console.log(notifications, "asdasd");
-    // toast({
-    //   component: NotificationList,
-    //   props: {
-    //     name: notification.name,
-    //     action: notification.action,
-    //     event: notification.event,
-    //     message: notification.message,
-    //     time: formatNotificationTime(notification.time),
-    //     avatar: notification.avatar,
-    //     statusIcon: notification.statusIcon,
-    //     status: notification.status,
-    //   },
-    //   options: {
-    //     position: "top-right",
-    //   },
-    // });
-
-    loadNotifications();
-  });
-
-  afterUpdate(() => {
-    const notification = notifications[0];
-    toast.success(`Grace Lusk confirmed for Jest Quest`, {
+    toast(ToastNotifactions, {
       position: "top-right",
+      duration: 3000,
     });
+    loadNotifications();
   });
 </script>
 

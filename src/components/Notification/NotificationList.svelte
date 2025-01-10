@@ -47,7 +47,7 @@
   const icon = getStatusIcon();
 </script>
 
-<div class="flex items-start">
+<div class="flex items-start w-full">
   <div class="relative">
     <img
       src={avatar}

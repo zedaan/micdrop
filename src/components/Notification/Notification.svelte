@@ -1,6 +1,7 @@
 <script>
   import { toast } from "svelte-sonner";
   import NotificationGroup from "./NotificationGroup.svelte";
+  import ToastNotifactions from "@components/ToastNotifactions/ToastNotifactions.svelte";
 
   export let notifications = [];
 </script>
@@ -17,8 +18,9 @@
       href="/notifications"
       on:click={(e) => {
         e.preventDefault();
-        toast.info(`Grace Lusk confirmed for Jest Quest`, {
+        toast(ToastNotifactions, {
           position: "top-right",
+          duration: 3000,
         });
       }}
       class="text-[#0284FE] text-sm font-medium leading-[14px] hover:no-underline"
