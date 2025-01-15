@@ -7,7 +7,7 @@ export const EventTableColumns = [
     customRender: (value) => {
       return `<div class="flex items-center gap-6">
         <img src="${value.image}" alt="${value.name}" class="w-12 h-12 rounded-md" />
-        <span class="text-Text-Secondary font-normal text-sm md:pr-4">${value.name}</span>
+        <span class="text-Text-Secondary font-normal text-sm md:pr-14">${value.name}</span>
       </div>`;
     },
   },
@@ -17,7 +17,7 @@ export const EventTableColumns = [
     sortable: true,
     customRender: (value) => {
       return `<div>
-        <p class="text-Text-Tartiary font-normal text-sm">${value.date}</p>
+        <p class="text-Text-Tartiary font-normal text-sm md:pr-4">${value.date}</p>
         <p class="text-gray-400 text-xs">${value.day}</p>
       </div>`;
     },
