@@ -9,7 +9,6 @@
   import CalendarContainer from "@components/Calendar/CalendarContainer/CalendarContainer.svelte";
   import FileDropzone from "@components/FileDropzone/FileDropzone.svelte";
   import Cropzone from "@components/CroppingUI/CropZone.svelte";
-    import Login from "@components/Login/Login.svelte";
 
   let isModalOpen = false;
 
@@ -35,7 +34,7 @@
   <title>Home</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
-<!-- <div>
+<div>
   <div class="flex flex-col my-5">
 
     <button on:click={() => (isModalOpen = true)}>Open Modal</button>
@@ -127,6 +126,4 @@
     </div>
   </section>
   
-</div> -->
-
-<Login/>
+</div>
