@@ -140,7 +140,7 @@
   <table
     id="table"
     class={cn(
-      "w-[100%] text-sm text-left text-gray-500 bg-white",
+      "w-[100%] text-sm text-left text-gray-500 bg-white ",
       styles.table
     )}
   >
