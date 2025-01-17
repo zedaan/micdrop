@@ -20,7 +20,7 @@
     }
 
     try {
-      const response = await fetch("https://moxy.so/api/public/login", {
+      const response = await fetch("./../../api/public/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -29,17 +29,17 @@
         }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        authError.set(errorData?.message || "Login failed");
+        authError.set(data.error || "Login failed");
         return;
       }
 
-      const data = await response.json();
       const token = data.token;
       localStorage.setItem("token", token);
-      // Uncomment the next line when ready to redirect
-      goto("/dashboard");
+      // Redirect to dashboard
+      goto("/orders");
     } catch (error) {
       console.error("Login Error:", error);
       authError.set("An error occurred while logging in");
